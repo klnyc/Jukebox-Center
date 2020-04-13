@@ -1,0 +1,26 @@
+body {
+    margin: 0;
+    font-family: "Gill Sans", sans-serif;
+}
+
+.header {
+    height: 2.8rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.login {
+    display: flex;
+    justify-content: space-around;
+}
+
+.navigation {
+    border-top: 0.06rem solid black;
+    border-bottom: 0.06rem solid black;
+    height: 4rem;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+}

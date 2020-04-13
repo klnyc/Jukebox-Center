@@ -1,7 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import Main from './components/Main'
 
 ReactDOM.render(
-    <div>Hello Kenneth!!!!</div>,
+    <Main />,
     document.getElementById('app')
 )
