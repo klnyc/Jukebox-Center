@@ -1,12 +1,7 @@
 const Sequelize = require('sequelize')
-const database = require('./index')
+const database = require('./database')
 
 const Album = database.define('album', {
-    id: {
-        type: Sequelize.STRING,
-        unique: true,
-        allowNull: false
-    },
     title: {
         type: Sequelize.STRING,
         allowNull: false,

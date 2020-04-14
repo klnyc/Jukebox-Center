@@ -12,3 +12,5 @@ router.get('/', async (request, response, next) => {
         next(error)
     }
 })
+
+module.exports = router
