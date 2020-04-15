@@ -15,7 +15,8 @@ export const getAllAlbums = () => {
     return async (dispatch) => {
         try {
             const { data } = await Axios.get('api/albums')
-            dispatch(setAllAlbums(data))
+            const albums = data.sort((a, b) => {return b.year - a.year})
+            dispatch(setAllAlbums(albums))
         } catch (error) {
             console.log('Error with albums!')
         }

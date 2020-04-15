@@ -17,6 +17,11 @@ class Albums extends React.Component {
                             <div><img className="album-image" src={album.image} /></div>
                             <div>{album.title}</div>
                             <div>{album.artist}</div>
+                            <div>${album.price/2}</div>
+                            {album.inventory
+                            ? <div className="stock-in">Stock: {album.inventory}</div> 
+                            : <div className="stock-out">"Out of stock!"</div>}
+                            <div>Add To Cart</div>
                         </div>
                     )
                 })}

@@ -50,6 +50,9 @@ body {
     height: 10rem;
 }
 
+.stock-in { color: green }
+.stock-out { color: red }
+
 .footer {
     display: flex;
     justify-content: center;
