@@ -7,6 +7,11 @@ body {
     height: 2.8rem;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+}
+
+.header-link {
+    margin: 0 0.6rem;
 }
 
 .login {
@@ -18,9 +23,36 @@ body {
     border-top: 0.06rem solid black;
     border-bottom: 0.06rem solid black;
     height: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.genre {
+    margin: 0 1rem;
+}
+
+.albums {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem;
+    margin: auto;
+    width: 60rem;
+}
+
+.album {
+    text-align: center;
+    margin: 1rem;
+    width: 13rem;
+}
+
+.album-image {
+    height: 10rem;
 }
 
 .footer {
     display: flex;
     justify-content: center;
+    background-color: black;
+    color: white;
 }

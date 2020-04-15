@@ -14,7 +14,7 @@ class Albums extends React.Component {
                 {albums.map(album => {
                     return (
                         <div className="album" key={album.id}>
-                            <div><img src={album.image} /></div>
+                            <div><img className="album-image" src={album.image} /></div>
                             <div>{album.title}</div>
                             <div>{album.artist}</div>
                         </div>

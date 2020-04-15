@@ -3,10 +3,10 @@ import React from 'react'
 const Header = () => {
     return (
         <div className="header">
-            <div>Jukebox Center</div>
+            <div className="header-link">Jukebox Center</div>
             <div className="login">
-                <div>Login</div>
-                <div>Cart</div>
+                <div className="header-link">Login</div>
+                <div className="header-link">Cart</div>
             </div>
         </div>
     )
