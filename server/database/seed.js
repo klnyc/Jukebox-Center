@@ -4,9 +4,9 @@ const Album = require('./album')
 const albums = [
     {
         title: 'The Sailor',
-        artist: 'Rich Brian',
+        artist: ['Rich Brian'],
         genre: 'Rap',
-        year: '2010',
+        year: '2019',
         inventory: 100,
         price: 2000,
         image: 'https://resources.tidal.com/images/54253cdf/61dc/457f/aaa1/45c9d1083a84/750x750.jpg'

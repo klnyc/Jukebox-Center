@@ -1,13 +1,12 @@
-const Sequelize = require('sequelize')
 const router = require('express').Router()
-const Album = require('../database/album')
+const Albums = require('../database/album')
 
 router.get('/', async (request, response, next) => {
     try {
-        const albums = await Album.findAll({
+        const data = await Albums.findAll({
             limit: 24
         })
-        response.json(albums)
+        response.json(data)
     } catch (error) {
         next(error)
     }

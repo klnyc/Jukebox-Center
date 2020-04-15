@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const database = require('./database')
 
-const Album = database.define('album', {
+const Album = database.define('albums', {
     title: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -10,11 +10,8 @@ const Album = database.define('album', {
         }
     },
     artist: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        validate: {
-            notEmpty: true
-        }
+        type: Sequelize.ARRAY(Sequelize.TEXT),
+        allowNull: false
     },
     genre: {
         type: Sequelize.STRING,

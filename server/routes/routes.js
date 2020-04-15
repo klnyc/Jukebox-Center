@@ -1,6 +1,6 @@
 const router = require('express').Router()
 
-router.use('/album', require('./album'))
+router.use('/albums', require('./albums'))
 
 router.use((request, response, next) => {
     const error = new Error('API route not found!')
