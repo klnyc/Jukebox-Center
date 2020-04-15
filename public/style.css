@@ -12,6 +12,11 @@ body {
 
 .header-link {
     margin: 0 0.6rem;
+    text-decoration: none;
+}
+
+.header-link:visited {
+    color: initial;
 }
 
 .login {

@@ -1,4 +1,4 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux'
+import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 import Axios from 'axios'
@@ -7,16 +7,15 @@ const initialState = {
     albums: []
 }
 
-const SET_ALL_ALBUMS = 'SET_ALL_ALBUMS'
+const SET_ALBUMS = 'SET_ALBUMS'
 
-const setAllAlbums = (albums) => ({ type: SET_ALL_ALBUMS, albums })
+const setAlbums = (albums) => ({ type: SET_ALBUMS, albums })
 
-export const getAllAlbums = () => {
+export const getAlbums = (genre) => {
     return async (dispatch) => {
         try {
-            const { data } = await Axios.get('api/albums')
-            const albums = data.sort((a, b) => {return b.year - a.year})
-            dispatch(setAllAlbums(albums))
+            const { data } = genre ? await Axios.get(`/api/albums/${genre}`) : await Axios.get('/api/albums')
+            dispatch(setAlbums(data))
         } catch (error) {
             console.log('Error with albums!')
         }
@@ -25,7 +24,7 @@ export const getAllAlbums = () => {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_ALL_ALBUMS:
+        case SET_ALBUMS:
             return { ...state, albums: action.albums }
         default:
             return state

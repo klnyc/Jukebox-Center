@@ -1,9 +1,10 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
     return (
         <div className="header">
-            <div className="header-link">Jukebox Center</div>
+            <Link to="/" className="header-link">Jukebox Center</Link>
             <div className="login">
                 <div className="header-link">Login</div>
                 <div className="header-link">Cart</div>

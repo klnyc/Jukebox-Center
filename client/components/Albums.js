@@ -1,10 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { getAllAlbums } from '../store'
+import { getAlbums } from '../store'
 
 class Albums extends React.Component {
     componentDidMount() {
-        this.props.getAllAlbums()
+        const { genre } = this.props.match.params
+        const { getAlbums } = this.props
+        genre ? getAlbums(genre) : getAlbums()
     }
 
     render() {
@@ -35,7 +37,7 @@ const mapState = (state) => ({
 })
 
 const mapDispatch = (dispatch) => ({
-    getAllAlbums: () => dispatch(getAllAlbums())
+    getAlbums: (genre) => dispatch(getAlbums(genre))
 })
 
 export default connect(mapState, mapDispatch)(Albums)
