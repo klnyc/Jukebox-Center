@@ -3,9 +3,9 @@ import React from 'react'
 const Footer = () => {
     return (
         <div className="footer">
-            <div>LinkedIn</div>
-            <div>Instagram</div>
-            <div>GitHub</div>
+            <div className="footer-link">LinkedIn</div>
+            <div className="footer-link">Instagram</div>
+            <div className="footer-link">GitHub</div>
         </div>
     )
 }

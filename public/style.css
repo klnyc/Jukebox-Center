@@ -1,6 +1,7 @@
 body {
     margin: 0;
     font-family: "Gill Sans", sans-serif;
+    background-color: ghostwhite;
 }
 
 .header {
@@ -8,6 +9,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 0.6rem;
 }
 
 .header-link {
@@ -35,6 +37,11 @@ body {
 
 .genre {
     margin: 0 1rem;
+    text-decoration: none;
+}
+
+.genre:visited {
+    color: initial;
 }
 
 .albums {
@@ -63,4 +70,10 @@ body {
     justify-content: center;
     background-color: black;
     color: white;
+    height: 6rem;
+    align-items: center;
+}
+
+.footer-link {
+    margin: 0 1rem;
 }
