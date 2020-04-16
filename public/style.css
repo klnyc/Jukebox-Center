@@ -50,20 +50,31 @@ body {
     padding: 1rem;
     margin: auto;
     width: 60rem;
+    min-height: 40rem;
 }
 
-.albums-album {
+.albums-box {
     text-align: center;
     margin: 1rem;
     width: 13rem;
 }
 
-.albums-album-image {
+.albums-image {
     height: 10rem;
 }
 
 .stock-in { color: green }
 .stock-out { color: red }
+
+.album {
+    height: 32rem;
+    display: flex;
+}
+
+.album-image {
+    width: 30rem;
+    margin: 1rem;
+}
 
 .footer {
     display: flex;
@@ -76,4 +87,10 @@ body {
 
 .footer-link {
     margin: 0 1rem;
+}
+
+@media only screen and (max-width: 992px) {
+    .albums {
+        width: 30rem;
+    }
 }

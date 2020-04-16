@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { getAlbum } from '../store'
+import Base from './Base'
 
-class Album extends React.Component {
+class Album extends Base {
     componentDidMount() {
         const { genre, id } = this.props.match.params
         const { getAlbum } = this.props
@@ -13,7 +14,16 @@ class Album extends React.Component {
         const { album } = this.props
         return (
             <div className="album">
-                <div><img src={album.image} /></div>
+                <img className="album-image" src={album.image} />
+                <div className="album-info">
+                    <div>{album.title}</div>
+                    <div>{album.artist}</div>
+                    <div>{album.genre}</div>
+                    <div>{album.year}</div>
+                    <div>{album.inventory}</div>
+                    {album.price && <div>{this.formatPrice(album.price)}</div>}
+                    <div>Add To Cart</div>
+                </div>
             </div>
         )
     }
