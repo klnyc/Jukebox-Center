@@ -52,13 +52,13 @@ body {
     width: 60rem;
 }
 
-.album {
+.albums-album {
     text-align: center;
     margin: 1rem;
     width: 13rem;
 }
 
-.album-image {
+.albums-album-image {
     height: 10rem;
 }
 

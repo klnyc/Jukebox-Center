@@ -24,4 +24,13 @@ router.get('/:genre', async (request, response, next) => {
     }
 })
 
+router.get('/:genre/:id', async (request, response, next) => {
+    try {
+        const data = await Albums.findByPk(request.params.id)
+        response.json(data)
+    } catch (error) {
+        next(error)
+    }
+})
+
 module.exports = router
