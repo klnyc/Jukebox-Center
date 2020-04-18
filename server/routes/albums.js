@@ -3,10 +3,10 @@ const Albums = require('../database/album')
 
 router.get('/', async (request, response, next) => {
     try {
-        const data = await Albums.findAll({
+        const albums = await Albums.findAll({
             order: [['year', 'DESC']]
         })
-        response.json(data)
+        response.json(albums)
     } catch (error) {
         next(error)
     }
@@ -14,11 +14,11 @@ router.get('/', async (request, response, next) => {
 
 router.get('/:genre', async (request, response, next) => {
     try {
-        const data = await Albums.findAll({
+        const albums = await Albums.findAll({
             order: [['year', 'DESC']],
             where: { genre: request.params.genre }
         })
-        response.json(data)
+        response.json(albums)
     } catch (error) {
         next(error)
     }
@@ -26,8 +26,8 @@ router.get('/:genre', async (request, response, next) => {
 
 router.get('/:genre/:id', async (request, response, next) => {
     try {
-        const data = await Albums.findByPk(request.params.id)
-        response.json(data)
+        const album = await Albums.findByPk(request.params.id)
+        response.json(album)
     } catch (error) {
         next(error)
     }

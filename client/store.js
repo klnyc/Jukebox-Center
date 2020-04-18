@@ -36,6 +36,16 @@ export const getAlbum = (genre, id) => {
     }
 }
 
+export const signup = (email, password, name, address) => {
+    return async (dispatch) => {
+        try {
+            await Axios.post('/api/user/signup', { email, password, name, address })
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_ALBUMS:
