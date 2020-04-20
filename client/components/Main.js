@@ -5,8 +5,7 @@ import Navigation from './Navigation'
 import Footer from './Footer'
 import Albums from './Albums'
 import Album from './Album'
-import Login from './Login'
-import Signup from './Signup'
+import Authenticate from './Authenticate'
 
 const Main = () => {
     return (
@@ -18,8 +17,8 @@ const Main = () => {
             <Route exact path="/albums" component={Albums} />
             <Route exact path="/albums/:genre" component={Albums} />
             <Route exact path="/albums/:genre/:id" component={Album} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/login" component={Authenticate} />
+            <Route exact path="/signup" component={Authenticate} />
       
             <Footer />
         </BrowserRouter>

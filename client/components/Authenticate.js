@@ -1,37 +1,42 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { login } from '../store'
+import { authenticate } from '../store'
 
-class Login extends React.Component {
+class Authenticate extends React.Component {
     constructor() {
         super()
         this.state = {
+            method: 'login',
             email: '',
             password: ''
         }
         this.handleChange = this.handleChange.bind(this)
-        this.handleLogin = this.handleLogin.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+    }
+
+    componentDidMount() {
+        const method = this.props.match.path.slice(1)
+        this.setState({ method })
     }
 
     handleChange(event) {
         this.setState({ [event.target.name]: event.target.value })
     }
 
-    handleLogin(event) {
+    handleSubmit(event) {
+        const { authenticate } = this.props
         event.preventDefault()
-        const { email, password } = this.state
-        const { login } = this.props
-        login(email, password)
+        authenticate(this.state)
     }
 
     render() {
-        const { email, password } = this.state
+        const { method, email, password } = this.state
         return (
             <div className="login">
                 <div className="login-input-container">
                     <div><input className="login-input" name="email" type="email" placeholder="Email" value={email} onChange={this.handleChange} required></input></div>
                     <div><input className="login-input" name="password" type="password" placeholder="Password" value={password} onChange={this.handleChange} required></input></div>
-                    <div onClick={this.handleLogin}>Login</div>
+                    <div onClick={this.handleSubmit}>{method === 'login' ? 'Login' : 'Sign Up'}</div>
                 </div>
             </div>
         )
@@ -39,7 +44,7 @@ class Login extends React.Component {
 }
 
 const mapDispatch = (dispatch) => ({
-    login: (email, password) => dispatch(login(email, password)) 
+    authenticate: (state) => dispatch(authenticate(state))
 })
 
-export default connect(null, mapDispatch)(Login)
+export default connect(null, mapDispatch)(Authenticate)

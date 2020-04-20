@@ -39,21 +39,11 @@ export const getAlbum = (genre, id) => {
     }
 }
 
-export const login = (email, password) => {
+export const authenticate = (state) => {
+    const { method, email, password } = state
     return async (dispatch) => {
         try {
-            const user = await Axios.post('/api/user/login', { email, password })
-            dispatch(setUser(user.data))
-        } catch (error) {
-            console.log(error)
-        }
-    }
-}
-
-export const signup = (email, password, name, address) => {
-    return async (dispatch) => {
-        try {
-            const user = await Axios.post('/api/user/signup', { email, password, name, address })
+            const user = await Axios.post(`/api/user/${method}`, { email, password })
             dispatch(setUser(user.data))
         } catch (error) {
             console.log(error)

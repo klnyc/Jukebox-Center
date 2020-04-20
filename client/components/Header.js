@@ -10,7 +10,7 @@ class Header extends React.Component {
 
     renderLoginLinks() {
         const { user } = this.props
-        return user.id ? <div>{user.name}</div> :
+        return user.id ? <div>{user.email}</div> :
         <Fragment>
             <Link to="/login" className="header-link">Login</Link>
             <Link to="/signup" className="header-link">Sign Up</Link>

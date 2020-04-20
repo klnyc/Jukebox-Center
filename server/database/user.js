@@ -4,9 +4,7 @@ const crypto = require('crypto')
 
 const User = database.define('users', {
     name: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        validate: { notEmpty: true }
+        type: Sequelize.STRING
     },
     address: {
         type: Sequelize.STRING
