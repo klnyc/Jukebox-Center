@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import {  } from '../store'
+import { login } from '../store'
 
 class Login extends React.Component {
     constructor() {
@@ -20,6 +20,8 @@ class Login extends React.Component {
     handleLogin(event) {
         event.preventDefault()
         const { email, password } = this.state
+        const { login } = this.props
+        login(email, password)
     }
 
     render() {
@@ -35,7 +37,7 @@ class Login extends React.Component {
 }
 
 const mapDispatch = (dispatch) => ({
-    
+    login: (email, password) => dispatch(login(email, password)) 
 })
 
-export default connect(null, null)(Login)
+export default connect(null, mapDispatch)(Login)

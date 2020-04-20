@@ -4,13 +4,16 @@ import { createLogger } from 'redux-logger'
 import Axios from 'axios'
 
 const initialState = {
+    user: {},
     albums: [],
     album: {}
 }
 
+const SET_USER = 'SET_USER'
 const SET_ALBUMS = 'SET_ALBUMS'
 const SET_ALBUM = 'SET_ALBUM'
 
+const setUser = (user) => ({ type: SET_USER, user })
 const setAlbums = (albums) => ({ type: SET_ALBUMS, albums })
 const setAlbum = (album) => ({ type: SET_ALBUM, album })
 
@@ -36,10 +39,22 @@ export const getAlbum = (genre, id) => {
     }
 }
 
+export const login = (email, password) => {
+    return async (dispatch) => {
+        try {
+            const user = await Axios.post('/api/user/login', { email, password })
+            dispatch(setUser(user.data))
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
 export const signup = (email, password, name, address) => {
     return async (dispatch) => {
         try {
-            await Axios.post('/api/user/signup', { email, password, name, address })
+            const user = await Axios.post('/api/user/signup', { email, password, name, address })
+            dispatch(setUser(user.data))
         } catch (error) {
             console.log(error)
         }
@@ -48,6 +63,8 @@ export const signup = (email, password, name, address) => {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
+        case SET_USER:
+            return { ...state, user: action.user }
         case SET_ALBUMS:
             return { ...state, albums: action.albums }
         case SET_ALBUM:

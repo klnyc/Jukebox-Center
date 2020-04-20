@@ -31,7 +31,9 @@ const User = database.define('users', {
 
 User.generateSalt = () => crypto.randomBytes(16).toString('base64')
 User.encryptPassword = (text, salt) => crypto.createHash('RSA-SHA256').update(text).update(salt).digest('hex')
-User.prototype.correctPassword = (password) => User.encryptPassword(password, this.salt()) === this.password()
+User.prototype.correctPassword = function (password) {
+    return User.encryptPassword(password, this.salt()) === this.password()
+}
 
 const setSaltAndPassword = (user) => {
     if (user.changed('password')) {

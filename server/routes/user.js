@@ -31,7 +31,6 @@ router.post('/login', async (request, response, next) => {
 
 router.post('/signup', async (request, response, next) => {
     try {
-        console.log('route hit:', request.body)
         const user = await Users.create(request.body)
         request.login(user, (error) => error ? next(error) : response.json(user))
     } catch (error) {
