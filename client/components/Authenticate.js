@@ -36,8 +36,8 @@ class Authenticate extends React.Component {
                 <div className="login-input-container">
                     <div><input className="login-input" name="email" type="email" placeholder="Email" value={email} onChange={this.handleChange} required></input></div>
                     <div><input className="login-input" name="password" type="password" placeholder="Password" value={password} onChange={this.handleChange} required></input></div>
-                    <div className="login-submit-button" onClick={this.handleSubmit}>{method === 'login' ? 'Login' : 'Sign Up'}</div>
                 </div>
+                <div className="login-submit-button" onClick={this.handleSubmit}>{method === 'login' ? 'Login' : 'Sign Up'}</div>
             </div>
         )
     }

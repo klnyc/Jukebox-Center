@@ -59,12 +59,16 @@ body {
 }
 
 .login-submit-button {
-    text-decoration: none;
-    margin: 0 0 1rem 0;
+    border: 0.08rem solid black;
+    background-color: lightblue;
+    text-align: center;
+    width: 6rem;
+    margin: 1rem auto;
+    padding: .12rem;
 }
 
-.login-submit-button:visited {
-    color: initial;
+.login-submit-button:hover {
+    cursor: pointer;
 }
 
 .albums {
