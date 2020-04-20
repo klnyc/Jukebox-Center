@@ -30,11 +30,13 @@ class Signup extends React.Component {
         const { email, password, name, address } = this.state
         return (
             <div className="login">
-                <input name="email" type="email" placeholder="Email" value={email} onChange={this.handleChange} required></input>
-                <input name="password" type="password" placeholder="Password" value={password} onChange={this.handleChange} required></input>
-                <input name="name" type="name" placeholder="Name" value={name} onChange={this.handleChange} required></input>
-                <input name="address" type="address" placeholder="Address" value={address} onChange={this.handleChange}></input>
-                <div onClick={this.handleLogin}>Sign Up</div>
+                <div className="login-input-container">
+                    <div><input className="login-input" name="email" type="email" placeholder="Email" value={email} onChange={this.handleChange} required></input></div>
+                    <div><input className="login-input" name="password" type="password" placeholder="Password" value={password} onChange={this.handleChange} required></input></div>
+                    <div><input className="login-input" name="name" type="name" placeholder="Name" value={name} onChange={this.handleChange} required></input></div>
+                    <div><input className="login-input" name="address" type="address" placeholder="Address" value={address} onChange={this.handleChange}></input></div>
+                    <div onClick={this.handleLogin}>Sign Up</div>
+                </div>
             </div>
         )
     }

@@ -44,6 +44,20 @@ body {
     color: initial;
 }
 
+.login-input-container {
+    text-align: center;
+}
+
+.login-input-container div {
+    margin: 1rem 0;
+}
+
+.login-input {
+    border-radius: 0.2rem;
+    padding: 0.3rem;
+    border: 0.08rem solid black;
+}
+
 .albums {
     display: flex;
     flex-wrap: wrap;
@@ -53,7 +67,7 @@ body {
     min-height: 40rem;
 }
 
-.albums-box {
+.albums-container {
     text-align: center;
     margin: 1rem;
     width: 13rem;

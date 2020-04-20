@@ -28,9 +28,11 @@ class Login extends React.Component {
         const { email, password } = this.state
         return (
             <div className="login">
-                <input name="email" type="email" placeholder="Email" value={email} onChange={this.handleChange} required></input>
-                <input name="password" type="password" placeholder="Password" value={password} onChange={this.handleChange} required></input>
-                <div onClick={this.handleLogin}>Login</div>
+                <div className="login-input-container">
+                    <div><input className="login-input" name="email" type="email" placeholder="Email" value={email} onChange={this.handleChange} required></input></div>
+                    <div><input className="login-input" name="password" type="password" placeholder="Password" value={password} onChange={this.handleChange} required></input></div>
+                    <div onClick={this.handleLogin}>Login</div>
+                </div>
             </div>
         )
     }
