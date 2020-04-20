@@ -39,12 +39,13 @@ export const getAlbum = (genre, id) => {
     }
 }
 
-export const authenticate = (state) => {
+export const authenticate = (state, history) => {
     const { method, email, password } = state
     return async (dispatch) => {
         try {
             const user = await Axios.post(`/api/user/${method}`, { email, password })
             dispatch(setUser(user.data))
+            history.push('/')
         } catch (error) {
             console.log(error)
         }

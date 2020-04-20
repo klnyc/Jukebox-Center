@@ -24,9 +24,9 @@ class Authenticate extends React.Component {
     }
 
     handleSubmit(event) {
-        const { authenticate } = this.props
+        const { authenticate, history } = this.props
         event.preventDefault()
-        authenticate(this.state)
+        authenticate(this.state, history)
     }
 
     render() {
@@ -36,7 +36,7 @@ class Authenticate extends React.Component {
                 <div className="login-input-container">
                     <div><input className="login-input" name="email" type="email" placeholder="Email" value={email} onChange={this.handleChange} required></input></div>
                     <div><input className="login-input" name="password" type="password" placeholder="Password" value={password} onChange={this.handleChange} required></input></div>
-                    <div onClick={this.handleSubmit}>{method === 'login' ? 'Login' : 'Sign Up'}</div>
+                    <div className="login-submit-button" onClick={this.handleSubmit}>{method === 'login' ? 'Login' : 'Sign Up'}</div>
                 </div>
             </div>
         )
@@ -44,7 +44,7 @@ class Authenticate extends React.Component {
 }
 
 const mapDispatch = (dispatch) => ({
-    authenticate: (state) => dispatch(authenticate(state))
+    authenticate: (state, history) => dispatch(authenticate(state, history))
 })
 
 export default connect(null, mapDispatch)(Authenticate)

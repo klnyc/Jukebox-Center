@@ -9,11 +9,11 @@ class Navigation extends React.Component {
         const genres = ['Chinese','Country','Korean','Pop','R&B','Rap','Rock']
         return (
             <div className='navigation'>
-                <Link to={'/albums'} className="genre" onClick={() => getAlbums()}>All</Link>
+                <Link to={'/albums'} className="navigation-genre" onClick={() => getAlbums()}>All</Link>
                 {genres.map((genre, index) => 
                     <Link 
                         to={`/albums/${genre}`} 
-                        className="genre" 
+                        className="navigation-genre" 
                         key={index}
                         onClick={() => getAlbums(genre)}>
                         {genre}

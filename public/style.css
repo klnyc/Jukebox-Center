@@ -35,12 +35,12 @@ body {
     align-items: center;
 }
 
-.genre {
+.navigation-genre {
     margin: 0 1rem;
     text-decoration: none;
 }
 
-.genre:visited {
+.navigation-genre:visited {
     color: initial;
 }
 
@@ -56,6 +56,15 @@ body {
     border-radius: 0.2rem;
     padding: 0.3rem;
     border: 0.08rem solid black;
+}
+
+.login-submit-button {
+    text-decoration: none;
+    margin: 0 0 1rem 0;
+}
+
+.login-submit-button:visited {
+    color: initial;
 }
 
 .albums {
