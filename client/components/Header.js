@@ -13,7 +13,7 @@ class Header extends React.Component {
         const { user, logout } = this.props
         return user.id ? 
         <Fragment>
-            <Link to="/" className="header-link">{user.email}</Link>
+            <Link to="/profile" className="header-link">{user.email}</Link>
             <Link to="/" className="header-link" onClick={() => logout()}>Log Out</Link>
         </Fragment> :
         <Fragment>

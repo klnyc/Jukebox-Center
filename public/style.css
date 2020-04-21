@@ -15,10 +15,7 @@ body {
 .header-link {
     margin: 0 0.6rem;
     text-decoration: none;
-}
-
-.header-link:visited {
-    color: initial;
+    color: black;
 }
 
 .header-login {
@@ -57,12 +54,10 @@ body {
 }
 
 .login-submit-button {
-    border: 0.08rem solid black;
-    background-color: lightblue;
     text-align: center;
     width: 6rem;
     margin: 1rem auto;
-    padding: .12rem;
+    padding: 0.12rem;
 }
 
 .login-submit-button:hover {
@@ -75,7 +70,6 @@ body {
     padding: 1rem;
     margin: auto;
     width: 60rem;
-    min-height: 40rem;
 }
 
 .albums-container {
@@ -109,6 +103,60 @@ body {
     width: 100%;
 }
 
+.profile {
+    text-align: center;
+}
+
+.profile-fields-container {
+    border: 0.08rem black solid;
+    padding: 1rem;
+    margin: 1rem;
+}
+
+.profile-fields {
+    padding: 0.6rem;
+    display: flex;
+}
+
+.profile-column {
+    padding: 0 1rem;
+}
+
+.profile-column.left {
+    flex: 2;
+    text-align: right;
+}
+
+.profile-column.right {
+    flex: 3;
+    text-align: left;
+}
+
+.profile-column.type {
+    flex: 1;
+}
+
+.profile-column.current {
+    flex: 1;
+}
+
+.profile-column.new {
+    flex: 1;
+}
+
+.profile-submit-button {
+    margin-top: 1rem;
+}
+
+.profile-submit-button a {
+    text-decoration: none;
+    color: black;
+}
+
+.profile-submit-button a:hover {
+    cursor: pointer;
+}
+
 .footer {
     display: flex;
     justify-content: center;
@@ -121,6 +169,8 @@ body {
 .footer-link {
     margin: 0 1rem;
 }
+
+.album, .albums, .login, .profile { min-height: 40rem; }
 
 @media only screen and (max-width: 992px) {
     .albums {

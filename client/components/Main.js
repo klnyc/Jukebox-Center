@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Route, BrowserRouter } from 'react-router-dom'
 import Header from './Header'
@@ -7,6 +7,7 @@ import Footer from './Footer'
 import Albums from './Albums'
 import Album from './Album'
 import Authenticate from './Authenticate'
+import Profile from './Profile'
 import { loadUser } from '../store'
 
 class Main extends React.Component {
@@ -15,6 +16,7 @@ class Main extends React.Component {
     }
 
     render() {
+        const { user } = this.props
         return (
             <BrowserRouter>
                 <Header />
@@ -26,15 +28,24 @@ class Main extends React.Component {
                 <Route exact path="/albums/:genre/:id" component={Album} />
                 <Route exact path="/login" component={Authenticate} />
                 <Route exact path="/signup" component={Authenticate} />
-          
+                {user.id && 
+                <Fragment>
+                    <Route exact path="/profile" component={Profile} />
+                    <Route exact path="/profile/edit" component={Profile} />
+                </Fragment>}
+        
                 <Footer />
             </BrowserRouter>
         )
     }
 }
 
+const mapState = (state) => ({
+    user: state.user
+})
+
 const mapDispatch = (dispatch) => ({
     loadUser: () => dispatch(loadUser())
 })
 
-export default connect(null, mapDispatch)(Main)
+export default connect(mapState, mapDispatch)(Main)

@@ -1,16 +1,8 @@
 const router = require('express').Router()
 const Users = require('../database/user')
 
-router.get('/', async (request, response, next) => {
-    if (request.user) {
-        try {
-            response.json(request.user)
-        } catch (error) {
-            next(error)
-        }
-    } else {
-        response.sendStatus(401)
-    }
+router.get('/', (request, response, next) => {
+    response.json(request.user)
 })
 
 router.post('/login', async (request, response, next) => {
