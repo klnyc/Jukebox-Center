@@ -15,9 +15,6 @@ class Album extends Base {
         return (
             <div className="album">
                 <img className="album-image" src={album.image} />
-                <div className="album-tracklist">
-                    <div>Tracklist</div>
-                </div>
                 <div className="album-info">
                     <div>{album.title}</div>
                     <div>{album.artist}</div>

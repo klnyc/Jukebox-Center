@@ -42,4 +42,14 @@ router.post('/signup', async (request, response, next) => {
     }
 })
 
+router.delete('/logout', (request, response) => {
+    request.logout()
+    request.session.destroy()
+    response.sendStatus(204)
+})
+
+router.get('/session', (request, response) => {
+    response.json(request.user)
+})
+
 module.exports = router

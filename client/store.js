@@ -10,10 +10,12 @@ const initialState = {
 }
 
 const SET_USER = 'SET_USER'
+const REMOVE_USER = 'REMOVE_USER'
 const SET_ALBUMS = 'SET_ALBUMS'
 const SET_ALBUM = 'SET_ALBUM'
 
 const setUser = (user) => ({ type: SET_USER, user })
+const removeUser = () => ({ type: REMOVE_USER })
 const setAlbums = (albums) => ({ type: SET_ALBUMS, albums })
 const setAlbum = (album) => ({ type: SET_ALBUM, album })
 
@@ -52,10 +54,23 @@ export const authenticate = (state, history) => {
     }
 }
 
+export const logout = () => {
+    return async (dispatch) => {
+        try {
+            await Axios.delete('/api/user/logout')
+            dispatch(removeUser())
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USER:
             return { ...state, user: action.user }
+        case REMOVE_USER:
+            return { ...state, user: {} }
         case SET_ALBUMS:
             return { ...state, albums: action.albums }
         case SET_ALBUM:

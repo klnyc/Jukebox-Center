@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { logout } from '../store'
 
 class Header extends React.Component {
     constructor() {
@@ -9,8 +10,12 @@ class Header extends React.Component {
     }
 
     renderLoginLinks() {
-        const { user } = this.props
-        return user.id ? <div>{user.email}</div> :
+        const { user, logout } = this.props
+        return user.id ? 
+        <Fragment>
+            <Link to="/" className="header-link">{user.email}</Link>
+            <Link to="/" className="header-link" onClick={() => logout()}>Log Out</Link>
+        </Fragment> :
         <Fragment>
             <Link to="/login" className="header-link">Login</Link>
             <Link to="/signup" className="header-link">Sign Up</Link>
@@ -34,4 +39,8 @@ const mapState = (state) => ({
     user: state.user
 })
 
-export default connect(mapState, null)(Header)
+const mapDispatch = (dispatch) => ({
+    logout: () => dispatch(logout())
+})
+
+export default connect(mapState, mapDispatch)(Header)
