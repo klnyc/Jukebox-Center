@@ -33,15 +33,13 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: black;
 }
 
 .navigation-genre {
     margin: 0 1rem;
     text-decoration: none;
-}
-
-.navigation-genre:visited {
-    color: initial;
+    color: white;
 }
 
 .login-input-container {

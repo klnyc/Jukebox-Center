@@ -25,7 +25,7 @@ export const getAlbums = (genre) => {
             const { data } = genre ? await Axios.get(`/api/albums/${genre}`) : await Axios.get('/api/albums')
             dispatch(setAlbums(data))
         } catch (error) {
-            console.log('Error with albums!')
+            console.error('Error with albums!')
         }
     }
 }
@@ -36,7 +36,7 @@ export const getAlbum = (genre, id) => {
             const { data } = await Axios.get(`/api/albums/${genre}/${id}`)
             dispatch(setAlbum(data))
         } catch (error) {
-            console.log('Error with album!')
+            console.error('Error with album!')
         }
     }
 }
@@ -49,7 +49,7 @@ export const authenticate = (state, history) => {
             dispatch(setUser(user.data))
             history.push('/')
         } catch (error) {
-            console.log(error)
+            console.error(error)
         }
     }
 }
@@ -60,7 +60,18 @@ export const logout = () => {
             await Axios.delete('/api/user/logout')
             dispatch(removeUser())
         } catch (error) {
-            console.log(error)
+            console.error(error)
+        }
+    }
+}
+
+export const loadUser = () => {
+    return async (dispatch) => {
+        try {
+            const user = await Axios.get('/api/user')
+            dispatch(setUser(user.data || {}))
+        } catch (error) {
+            console.error(error)
         }
     }
 }

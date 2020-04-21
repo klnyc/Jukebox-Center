@@ -4,8 +4,7 @@ const Users = require('../database/user')
 router.get('/', async (request, response, next) => {
     if (request.user) {
         try {
-            const user = await Users.findByPk(request.user.dataValues.id)
-            response.json(user)
+            response.json(request.user)
         } catch (error) {
             next(error)
         }
@@ -46,10 +45,6 @@ router.delete('/logout', (request, response) => {
     request.logout()
     request.session.destroy()
     response.sendStatus(204)
-})
-
-router.get('/session', (request, response) => {
-    response.json(request.user)
 })
 
 module.exports = router
