@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Base from './Base'
+import { updateProfile } from '../store'
 
 class Profile extends Base {
     constructor() {
@@ -10,7 +11,8 @@ class Profile extends Base {
             edit: false,
             fields: [],
             name: '',
-            address: ''
+            address: '',
+            password: ''
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.renderProfile = this.renderProfile.bind(this)
@@ -30,9 +32,9 @@ class Profile extends Base {
     }
 
     handleSubmit(event) {
-        // const { authenticate, history } = this.props
+        const { updateProfile, history } = this.props
         event.preventDefault()
-        console.log(this.state.name, this.state.address)
+        updateProfile(this.state, history)
     }
 
     renderProfile(fields) {
@@ -87,4 +89,8 @@ const mapState = (state) => ({
     user: state.user
 })
 
-export default connect(mapState, null)(Profile)
+const mapDispatch = (dispatch) => ({
+    updateProfile: (state, history) => dispatch(updateProfile(state, history))
+})
+
+export default connect(mapState, mapDispatch)(Profile)

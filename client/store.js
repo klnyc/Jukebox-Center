@@ -76,6 +76,19 @@ export const loadUser = () => {
     }
 }
 
+export const updateProfile = (state, history) => {
+    const { name, address } = state
+    return async (dispatch) => {
+        try {
+            const user = await Axios.put('/api/user/profile', { name, address })
+            dispatch(setUser(user.data))
+            history.push('/profile')
+        } catch (error) {
+            console.error(error)
+        }
+    }
+}
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USER:

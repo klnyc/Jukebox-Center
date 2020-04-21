@@ -45,7 +45,12 @@ router.delete('/logout', (request, response) => {
 
 router.put('/profile', async (request, response) => {
     try {
-        
+        const { name, address } = request.body
+        const user = await Users.findByPk(request.user.dataValues.id)
+        if (name) await user.update({ name })
+        if (address) await user.update({ address })
+        const updatedUser = await Users.findByPk(request.user.dataValues.id)
+        response.status(200).json(updatedUser)
     } catch (error) {
         next(error)
     }
