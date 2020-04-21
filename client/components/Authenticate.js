@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import Base from './Base'
 import { authenticate } from '../store'
 
-class Authenticate extends React.Component {
+class Authenticate extends Base {
     constructor() {
         super()
         this.state = {
@@ -10,17 +11,12 @@ class Authenticate extends React.Component {
             email: '',
             password: ''
         }
-        this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
     componentDidMount() {
         const method = this.props.match.path.slice(1)
         this.setState({ method })
-    }
-
-    handleChange(event) {
-        this.setState({ [event.target.name]: event.target.value })
     }
 
     handleSubmit(event) {

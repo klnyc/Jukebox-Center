@@ -1,14 +1,18 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import Base from './Base'
 
-class Profile extends React.Component {
+class Profile extends Base {
     constructor() {
         super()
         this.state = {
             edit: false,
-            fields: []
+            fields: [],
+            name: '',
+            address: ''
         }
+        this.handleSubmit = this.handleSubmit.bind(this)
         this.renderProfile = this.renderProfile.bind(this)
         this.renderProfileEdit = this.renderProfileEdit.bind(this)
     }
@@ -21,8 +25,14 @@ class Profile extends React.Component {
             { category: "Address", data: user.address }
         ]
         this.props.match.path === '/profile/edit'
-        ? this.setState({ edit: true, fields}) 
+        ? this.setState({ edit: true, fields }) 
         : this.setState({ edit:false, fields })
+    }
+
+    handleSubmit(event) {
+        // const { authenticate, history } = this.props
+        event.preventDefault()
+        console.log(this.state.name, this.state.address)
     }
 
     renderProfile(fields) {
@@ -51,10 +61,12 @@ class Profile extends React.Component {
                     <div className="profile-fields" key={index}>
                         <div className="profile-column type">{field.category}</div>
                         <div className="profile-column current">{field.data || '-'}</div>
-                        <div className="profile-column new"><input /></div>
+                        <div className="profile-column new">
+                            <input name={field.category.toLowerCase()} value={this.state[field.category.toLowerCase()]} onChange={this.handleChange} />
+                        </div>
                     </div> 
                 )}
-                <div className="profile-submit-button">Submit Changes</div>
+                <div className="profile-submit-button" onClick={this.handleSubmit}>Submit Changes</div>
             </Fragment>
         )
     }

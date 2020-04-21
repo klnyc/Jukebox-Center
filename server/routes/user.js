@@ -2,7 +2,11 @@ const router = require('express').Router()
 const Users = require('../database/user')
 
 router.get('/', (request, response, next) => {
-    response.json(request.user)
+    try {
+        response.json(request.user)
+    } catch (error) {
+        next(error)
+    }
 })
 
 router.post('/login', async (request, response, next) => {
@@ -37,6 +41,14 @@ router.delete('/logout', (request, response) => {
     request.logout()
     request.session.destroy()
     response.sendStatus(204)
+})
+
+router.put('/profile', async (request, response) => {
+    try {
+        
+    } catch (error) {
+        next(error)
+    }
 })
 
 module.exports = router

@@ -58,9 +58,6 @@ body {
     width: 6rem;
     margin: 1rem auto;
     padding: 0.12rem;
-}
-
-.login-submit-button:hover {
     cursor: pointer;
 }
 
@@ -109,6 +106,7 @@ body {
 
 .profile-fields-container {
     border: 0.08rem black solid;
+    border-radius: 0.2rem;
     padding: 1rem;
     margin: 1rem;
 }
@@ -144,17 +142,20 @@ body {
     flex: 1;
 }
 
+.profile-column.new input {
+    border-radius: 0.2rem;
+    padding: 0.3rem;
+    border: 0.08rem solid black;
+}
+
 .profile-submit-button {
-    margin-top: 1rem;
+    cursor: pointer;
+    margin: 1rem auto 0;
 }
 
 .profile-submit-button a {
     text-decoration: none;
     color: black;
-}
-
-.profile-submit-button a:hover {
-    cursor: pointer;
 }
 
 .footer {

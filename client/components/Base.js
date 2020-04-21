@@ -3,7 +3,12 @@ import React from 'react'
 class Base extends React.Component {
     constructor() {
         super()
+        this.handleChange = this.handleChange.bind(this)
         this.formatPrice = this.formatPrice.bind(this)
+    }
+
+    handleChange(event) {
+        this.setState({ [event.target.name]: event.target.value })
     }
 
     formatPrice(price) {
