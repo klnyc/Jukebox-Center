@@ -1,4 +1,12 @@
-const Sequelize = require('sequelize')
-const database = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost:5432/jukeboxcenter', { logging: false })
+const database = require('./sequelize')
+const Users = require('./users')
+const Albums = require('./albums')
+const Orders = require('./orders')
+const Cart = require('./cart')
+
+Users.hasMany(Orders)
+Orders.belongsTo(Users)
+Albums.belongsToMany(Orders, { through: Cart })
+Orders.belongsToMany(Albums, { through: Cart })
 
 module.exports = database

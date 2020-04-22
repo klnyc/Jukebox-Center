@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
-const database = require('./database')
+const database = require('./sequelize')
 
-const Album = database.define('albums', {
+const Albums = database.define('albums', {
     title: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -38,9 +38,8 @@ const Album = database.define('albums', {
     },
     image: {
         type: Sequelize.TEXT,
-        allowNull: false,
-        defaultValue: 'https://resources.tidal.com/images/df72c868/5c20/4652/9f74/689523c358fa/750x750.jpg'
+        allowNull: false
     }
 })
 
-module.exports = Album
+module.exports = Albums

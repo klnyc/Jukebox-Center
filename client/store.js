@@ -6,18 +6,21 @@ import Axios from 'axios'
 const initialState = {
     user: {},
     albums: [],
-    album: {}
+    album: {},
+    cart: []
 }
 
 const SET_USER = 'SET_USER'
 const REMOVE_USER = 'REMOVE_USER'
 const SET_ALBUMS = 'SET_ALBUMS'
 const SET_ALBUM = 'SET_ALBUM'
+const SET_CART = 'SET_CART'
 
 const setUser = (user) => ({ type: SET_USER, user })
 const removeUser = () => ({ type: REMOVE_USER })
 const setAlbums = (albums) => ({ type: SET_ALBUMS, albums })
 const setAlbum = (album) => ({ type: SET_ALBUM, album })
+const setCart = (cart) => ({ type: SET_CART, cart })
 
 export const getAlbums = (genre) => {
     return async (dispatch) => {
@@ -89,6 +92,27 @@ export const updateProfile = (state, history) => {
     }
 }
 
+export const getCart = () => {
+    return async (dispatch) => {
+        try {
+            const cart = await Axios.get('/api/cart')
+            dispatch(setCart(cart.data))
+        } catch (error) {
+            console.error(error)
+        }
+    }
+}
+
+export const addToCart = (id, quantity, price) => {
+    return async () => {
+        try {
+            await Axios.post('/api/cart/add', { id, quantity, price })
+        } catch (error) {
+            console.error(error)
+        }
+    }
+}
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USER:
@@ -99,6 +123,8 @@ const reducer = (state = initialState, action) => {
             return { ...state, albums: action.albums }
         case SET_ALBUM:
             return { ...state, album: action.album }
+        case SET_CART:
+            return { ...state, cart: action.cart }
         default:
             return state
     }

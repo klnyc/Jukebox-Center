@@ -28,7 +28,7 @@ class Header extends React.Component {
                 <Link to="/" className="header-link">Jukebox Center</Link>
                 <div className="header-login">
                     {this.renderLoginLinks()}
-                    <div className="header-link">Cart</div>
+                    <Link to="/cart" className="header-link">Cart</Link>
                 </div>
             </div>
         )

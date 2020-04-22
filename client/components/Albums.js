@@ -22,10 +22,6 @@ class Albums extends Base {
                             <div>{album.title}</div>
                             <div>{album.artist}</div>
                             <div>{this.formatPrice(album.price)}</div>
-                            {album.inventory
-                            ? <div className="stock-in">Stock: {album.inventory}</div> 
-                            : <div className="stock-out">"Out of stock!"</div>}
-                            <div>Add To Cart</div>
                         </div>
                     )
                 })}

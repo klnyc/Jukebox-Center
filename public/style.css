@@ -79,9 +79,6 @@ body {
     height: 10rem;
 }
 
-.stock-in { color: green }
-.stock-out { color: red }
-
 .album {
     height: 32rem;
     display: flex;
@@ -99,6 +96,9 @@ body {
     align-items: center;
     width: 100%;
 }
+
+.stock-in { color: green }
+.stock-out { color: red }
 
 .profile {
     text-align: center;
@@ -171,7 +171,7 @@ body {
     margin: 0 1rem;
 }
 
-.album, .albums, .login, .profile { min-height: 40rem; }
+.albums, .login, .profile { min-height: 40rem; }
 
 @media only screen and (max-width: 992px) {
     .albums {

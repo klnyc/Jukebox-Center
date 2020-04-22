@@ -12,8 +12,9 @@ class Base extends React.Component {
     }
 
     formatPrice(price) {
-        const dollars = price.slice(0, price.length - 2)
-        const cents = price.slice(price.length - 2)
+        const string = price.toString()
+        const dollars = string.slice(0, string.length - 2)
+        const cents = string.slice(string.length - 2)
         return `$${dollars}.${cents}`
     }
 }

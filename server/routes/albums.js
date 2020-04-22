@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const Albums = require('../database/album')
+const Albums = require('../database/albums')
 
 router.get('/', async (request, response, next) => {
     try {
