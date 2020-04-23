@@ -13,13 +13,13 @@ class Cart extends Base {
         const { cart } = this.props
         return (
             <div className="cart">
-                Cart!
                 {cart.id ? cart.albums.map(album => 
                     <div className="albums-container" key={album.id}>
                         <div><img className="albums-image" src={album.image} /></div>
                         <div>{album.title}</div>
                         <div>{album.artist}</div>
                         <div>{this.formatPrice(album.price)}</div>
+                        <div>{album.cart.quantity}</div>
                     </div>) : <div>Cart is Empty</div>}
             </div>
         )
