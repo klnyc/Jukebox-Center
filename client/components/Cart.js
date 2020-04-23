@@ -13,7 +13,7 @@ class Cart extends React.Component {
         return (
             <div className="cart">
                 Cart!
-                {cart.map(album => <div>{album.price}</div>)}
+                {cart.length && cart.map(album => <div>{album.title}</div>)}
             </div>
         )
     }

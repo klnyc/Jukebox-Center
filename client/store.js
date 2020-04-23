@@ -7,7 +7,7 @@ const initialState = {
     user: {},
     albums: [],
     album: {},
-    cart: []
+    cart: {}
 }
 
 const SET_USER = 'SET_USER'
@@ -96,7 +96,7 @@ export const getCart = () => {
     return async (dispatch) => {
         try {
             const cart = await Axios.get('/api/cart')
-            dispatch(setCart(cart.data))
+            dispatch(setCart(cart.data.albums))
         } catch (error) {
             console.error(error)
         }

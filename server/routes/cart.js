@@ -10,7 +10,8 @@ router.get('/', async (request, response, next) => {
             where: {
                 purchased: false,
                 userId: request.user.id
-            }
+            },
+            include: [{ model: Albums }]
         })
         if (!order) {
             order = await Orders.create({
@@ -19,12 +20,7 @@ router.get('/', async (request, response, next) => {
                 userId: request.user.id
             })
         }
-        const albums = await Cart.findAll({
-            where: {
-                orderId: order.id
-            }
-        })
-        response.json(albums)
+        response.json(order)
     } catch (error) {
         next(error)
     }
