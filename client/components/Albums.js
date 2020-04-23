@@ -15,16 +15,14 @@ class Albums extends Base {
         const { albums } = this.props
         return (
             <div className="albums">
-                {albums.map(album => {
-                    return (
-                        <div className="albums-container" key={album.id}>
-                            <Link to={`/albums/${album.genre}/${album.id}`}><img className="albums-image" src={album.image} /></Link>
-                            <div>{album.title}</div>
-                            <div>{album.artist}</div>
-                            <div>{this.formatPrice(album.price)}</div>
-                        </div>
-                    )
-                })}
+                {albums.map(album => 
+                    <div className="albums-container" key={album.id}>
+                        <Link to={`/albums/${album.genre}/${album.id}`}><img className="albums-image" src={album.image} /></Link>
+                        <div>{album.title}</div>
+                        <div>{album.artist}</div>
+                        <div>{this.formatPrice(album.price)}</div>
+                    </div>
+                )}
             </div>
         )
     }

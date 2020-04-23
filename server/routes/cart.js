@@ -1,25 +1,24 @@
 const router = require('express').Router()
-const Users = require('../database/users')
 const Albums = require('../database/albums')
 const Orders = require('../database/orders')
 const Cart = require('../database/cart')
 
 router.get('/', async (request, response, next) => {
     try {
-        let order = await Orders.findOne({
+        await Orders.findOrCreate({
+            where: {
+                address: request.user.address,
+                purchased: false,
+                userId: request.user.id
+            }
+        })
+        const order = await Orders.findOne({
             where: {
                 purchased: false,
                 userId: request.user.id
             },
             include: [{ model: Albums }]
         })
-        if (!order) {
-            order = await Orders.create({
-                address: request.user.address,
-                purchased: false,
-                userId: request.user.id
-            })
-        }
         response.json(order)
     } catch (error) {
         next(error)

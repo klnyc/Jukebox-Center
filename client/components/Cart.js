@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import Base from './Base'
 import { getCart } from '../store'
 
-class Cart extends React.Component {
+class Cart extends Base {
     componentDidMount() {
         const { getCart } = this.props
         getCart()
@@ -13,7 +14,13 @@ class Cart extends React.Component {
         return (
             <div className="cart">
                 Cart!
-                {cart.length && cart.map(album => <div>{album.title}</div>)}
+                {cart.id ? cart.albums.map(album => 
+                    <div className="albums-container" key={album.id}>
+                        <div><img className="albums-image" src={album.image} /></div>
+                        <div>{album.title}</div>
+                        <div>{album.artist}</div>
+                        <div>{this.formatPrice(album.price)}</div>
+                    </div>) : <div>Cart is Empty</div>}
             </div>
         )
     }

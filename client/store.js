@@ -96,7 +96,7 @@ export const getCart = () => {
     return async (dispatch) => {
         try {
             const cart = await Axios.get('/api/cart')
-            dispatch(setCart(cart.data.albums))
+            dispatch(setCart(cart.data))
         } catch (error) {
             console.error(error)
         }
