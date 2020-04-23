@@ -113,6 +113,18 @@ export const addToCart = (id, quantity, price) => {
     }
 }
 
+export const removeFromCart = (orderId, albumId) => {
+    return async (dispatch) => {
+        try {
+            await Axios.delete('/api/cart', { data: { orderId, albumId } })
+            const cart = await Axios.get('/api/cart')
+            dispatch(setCart(cart.data))
+        } catch (error) {
+            console.error(error)
+        }
+    }
+}
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USER:

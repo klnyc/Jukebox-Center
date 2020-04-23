@@ -1,12 +1,22 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Base from './Base'
-import { getCart } from '../store'
+import { getCart, removeFromCart } from '../store'
 
 class Cart extends Base {
+    constructor() {
+        super()
+        this.removeAlbumFromCart = this.removeAlbumFromCart.bind(this)
+    }
+
     componentDidMount() {
         const { getCart } = this.props
         getCart()
+    }
+
+    removeAlbumFromCart(orderId, albumId) {
+        const { removeFromCart } = this.props
+        removeFromCart(orderId, albumId)
     }
 
     render() {
@@ -20,6 +30,7 @@ class Cart extends Base {
                         <div>{album.artist}</div>
                         <div>{this.formatPrice(album.price)}</div>
                         <div>Quantity: {album.cart.quantity}</div>
+                        <div onClick={() => this.removeAlbumFromCart(cart.id, album.id)}>Remove From Cart</div>
                     </div>) : <div>Cart is Empty</div>)}
             </div>
         )
@@ -31,7 +42,8 @@ const mapState = (state) => ({
 })
 
 const mapDispatch = (dispatch) => ({
-    getCart: () => dispatch(getCart())
+    getCart: () => dispatch(getCart()),
+    removeFromCart: (orderId, albumId) => dispatch(removeFromCart(orderId, albumId))
 })
 
 export default connect(mapState, mapDispatch)(Cart)

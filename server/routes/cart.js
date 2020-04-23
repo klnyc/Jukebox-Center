@@ -27,19 +27,19 @@ router.get('/', async (request, response, next) => {
 
 router.post('/add', async (request, response, next) => {
     try {
-        let order = await Orders.findOne({
+        await Orders.findOrCreate({
+            where: {
+                address: request.user.address,
+                purchased: false,
+                userId: request.user.id
+            }
+        })
+        const order = await Orders.findOne({
             where: {
                 purchased: false,
                 userId: request.user.id
             }
         })
-        if (!order) {
-            order = await Orders.create({
-                address: request.user.address,
-                purchased: false,
-                userId: request.user.id
-            })
-        }
         const album = await Cart.create({
             quantity: request.body.quantity,
             price: request.body.price,
@@ -51,4 +51,20 @@ router.post('/add', async (request, response, next) => {
         next(error)
     }
 })
+
+router.delete('/', async (request, response, next) => {
+    try {
+        const album = await Cart.findOne({
+            where: {
+                orderId: request.body.orderId,
+                albumId: request.body.albumId
+            }
+        })
+        await album.destroy()
+        response.sendStatus(204)
+    } catch (error) {
+        next(error)
+    }
+}) 
+
 module.exports = router
