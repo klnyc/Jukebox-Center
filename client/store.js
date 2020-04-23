@@ -125,6 +125,17 @@ export const removeFromCart = (orderId, albumId) => {
     }
 }
 
+export const purchase = (orderId, history) => {
+    return async () => {
+        try {
+            await Axios.put('/api/cart/purchase', { orderId })
+            history.push('/confirmation')
+        } catch (error) {
+            console.error(error)
+        }
+    }
+}
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USER:

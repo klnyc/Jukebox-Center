@@ -6,10 +6,7 @@ import Base from './Base'
 class Album extends Base {
     constructor() {
         super()
-        this.state = {
-            quantity: 1
-        }
-        this.addAlbumToCart = this.addAlbumToCart.bind(this)
+        this.state = { quantity: 1 }
     }
 
     componentDidMount() {
@@ -18,13 +15,8 @@ class Album extends Base {
         getAlbum(genre, id)
     }
 
-    addAlbumToCart(id, quantity, price) {
-        const { addToCart } = this.props
-        addToCart(id, quantity, price)
-    }
-
     render() {
-        const { album } = this.props
+        const { album, addToCart } = this.props
         const { quantity } = this.state
         return (
             <div className="album">
@@ -39,7 +31,7 @@ class Album extends Base {
                     <Fragment>
                         <div className="stock-in">Stock: {album.inventory}</div>
                         <div>Quantity: <input type="number" name="quantity" value={quantity} min="1" onChange={this.handleChange} /></div>
-                        <div onClick={() => this.addAlbumToCart(album.id, quantity, album.price)}>Add To Cart</div>
+                        <div onClick={() => addToCart(album.id, quantity, album.price)}>Add To Cart</div>
                     </Fragment> : <div className="stock-out">"Out of stock!"</div>}
                 </div>
             </div>

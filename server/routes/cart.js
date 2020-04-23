@@ -65,6 +65,16 @@ router.delete('/', async (request, response, next) => {
     } catch (error) {
         next(error)
     }
-}) 
+})
+
+router.put('/purchase', async (request, response, next) => {
+    try {
+        const order = await Orders.findByPk(request.body.orderId)
+        await order.update({ purchased: true })
+        response.sendStatus(200)
+    } catch (error) {
+        next(error)
+    }
+})
 
 module.exports = router

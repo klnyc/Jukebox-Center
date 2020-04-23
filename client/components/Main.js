@@ -9,6 +9,7 @@ import Album from './Album'
 import Authenticate from './Authenticate'
 import Profile from './Profile'
 import Cart from './Cart'
+import Confirmation from './Confirmation'
 import { loadUser } from '../store'
 
 class Main extends React.Component {
@@ -35,6 +36,7 @@ class Main extends React.Component {
                     <Route exact path="/profile" component={Profile} />
                     <Route exact path="/profile/edit" component={Profile} />
                 </Fragment>}
+                <Route exact path="/confirmation" component={Confirmation} />
         
                 <Footer />
             </BrowserRouter>
