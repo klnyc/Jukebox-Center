@@ -138,8 +138,7 @@ export const purchase = (orderId, history) => {
 }
 
 export const getGuestCart = () => {
-    const emptyCart = JSON.stringify({ id: true , albums: [] })
-    window.localStorage.cart = window.localStorage.cart || emptyCart
+    window.localStorage.cart = window.localStorage.cart || JSON.stringify({ id: true , albums: [] })
     const guestCart = JSON.parse(window.localStorage.cart)
     return (dispatch) => {
         dispatch(setCart(guestCart))
@@ -147,19 +146,26 @@ export const getGuestCart = () => {
 }
 
 export const addToGuestCart = (id, quantity, genre) => {
-    const emptyCart = JSON.stringify({ id: true , albums: [] })
-    window.localStorage.cart = window.localStorage.cart || emptyCart
+    window.localStorage.cart = window.localStorage.cart || JSON.stringify({ id: true , albums: [] })
     const guestCart = JSON.parse(window.localStorage.cart)
     return async () => {
         try {
             const { data } = await Axios.get(`/api/albums/${genre}/${id}`)
             const album = { ...data, cart: { quantity } }
             guestCart.albums.push(album)
-            const cart = JSON.stringify(guestCart)
-            window.localStorage.setItem("cart", cart)
+            window.localStorage.setItem("cart", JSON.stringify(guestCart))
         } catch (error) {
             console.error(error)
         }
+    }
+}
+
+export const removeFromGuestCart = (albumId) => {
+    let guestCart = JSON.parse(window.localStorage.cart)
+    guestCart.albums = guestCart.albums.filter(album => album.id !== albumId)
+    window.localStorage.setItem("cart", JSON.stringify(guestCart))
+    return (dispatch) => {
+        dispatch(setCart(JSON.parse(window.localStorage.cart)))
     }
 }
 
