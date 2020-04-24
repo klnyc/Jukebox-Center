@@ -8,6 +8,7 @@ class Cart extends Base {
         super()
         this.removeAlbum = this.removeAlbum.bind(this)
         this.purchase = this.purchase.bind(this)
+        this.calculateTotalPrice = this.calculateTotalPrice.bind(this)
     }
 
     componentDidMount() {
@@ -23,6 +24,15 @@ class Cart extends Base {
     purchase(orderId) {
         const { user, purchaseCart, purchaseGuestCart, history } = this.props
         user.id ? purchaseCart(orderId, history) : purchaseGuestCart(history)
+    }
+
+    calculateTotalPrice() {
+        const { cart } = this.props
+        if (cart.id) {
+            return cart.albums.reduce((start, album) => {
+                return start + (album.price * album.cart.quantity)
+            }, 0)
+        }
     }
 
     render() {
@@ -43,7 +53,7 @@ class Cart extends Base {
                             </div>)}
                     </div>
                     <div className="cart-checkout">
-                        <div>Total Price: </div>
+                        <div>Total Price: {this.formatPrice(this.calculateTotalPrice())}</div>
                         <div onClick={() => this.purchase(cart.id)}>Purchase</div>
                     </div>
                 </Fragment>

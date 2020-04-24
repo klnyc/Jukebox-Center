@@ -16,9 +16,9 @@ class Album extends Base {
         getAlbum(genre, id)
     }
 
-    buyAlbum(id, quantity, genre) {
+    buyAlbum(albumId, quantity, genre) {
         const { user, addToCart, addToGuestCart } = this.props
-        user.id ? addToCart(id, quantity) : addToGuestCart(id, quantity, genre)
+        user.id ? addToCart(albumId, quantity) : addToGuestCart(albumId, quantity, genre)
     }
 
     render() {
@@ -36,7 +36,7 @@ class Album extends Base {
                     {album.inventory ? 
                     <Fragment>
                         <div className="stock-in">Stock: {album.inventory}</div>
-                        <div>Quantity: <input type="number" name="quantity" value={quantity} min="1" onChange={this.handleChange} /></div>
+                        <div>Quantity: <input className="album-quantity-input" type="number" name="quantity" value={quantity} min="1" onChange={this.handleChange} /></div>
                         <div onClick={() => this.buyAlbum(album.id, quantity, album.genre)}>Add To Cart</div>
                     </Fragment> : <div className="stock-out">"Out of stock!"</div>}
                 </div>
@@ -51,9 +51,9 @@ const mapState = (state) => ({
 })
 
 const mapDispatch = (dispatch) => ({
-    getAlbum: (genre, id) => dispatch(getAlbum(genre, id)),
-    addToCart: (id, quantity) => dispatch(addToCart(id, quantity)),
-    addToGuestCart: (id, quantity, genre) => dispatch(addToGuestCart(id, quantity, genre))
+    getAlbum: (genre, albumId) => dispatch(getAlbum(genre, albumId)),
+    addToCart: (albumId, quantity) => dispatch(addToCart(albumId, quantity)),
+    addToGuestCart: (albumId, quantity, genre) => dispatch(addToGuestCart(albumId, quantity, genre))
 })
 
 export default connect(mapState, mapDispatch)(Album)

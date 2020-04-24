@@ -97,6 +97,14 @@ body {
     width: 100%;
 }
 
+.album-quantity-input {
+    text-align: center;
+    width: 2.4rem;
+    padding: .2rem;
+    border-radius: 0.2rem;
+    border: 0.08rem solid black;
+}
+
 .stock-in { color: green }
 .stock-out { color: red }
 

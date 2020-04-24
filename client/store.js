@@ -33,10 +33,10 @@ export const getAlbums = (genre) => {
     }
 }
 
-export const getAlbum = (genre, id) => {
+export const getAlbum = (genre, albumId) => {
     return async (dispatch) => {
         try {
-            const { data } = await Axios.get(`/api/albums/${genre}/${id}`)
+            const { data } = await Axios.get(`/api/albums/${genre}/${albumId}`)
             dispatch(setAlbum(data))
         } catch (error) {
             console.error('Error with album!')
@@ -48,8 +48,8 @@ export const authenticate = (state, history) => {
     const { method, email, password } = state
     return async (dispatch) => {
         try {
-            const user = await Axios.post(`/api/user/${method}`, { email, password })
-            dispatch(setUser(user.data))
+            const { data } = await Axios.post(`/api/user/${method}`, { email, password })
+            dispatch(setUser(data))
             window.localStorage.clear()
             history.push('/')
         } catch (error) {
@@ -72,8 +72,8 @@ export const logout = () => {
 export const loadUser = () => {
     return async (dispatch) => {
         try {
-            const user = await Axios.get('/api/user')
-            dispatch(setUser(user.data || {}))
+            const { data } = await Axios.get('/api/user')
+            dispatch(setUser(data || {}))
         } catch (error) {
             console.error(error)
         }
@@ -84,8 +84,8 @@ export const updateProfile = (state, history) => {
     const { name, address } = state
     return async (dispatch) => {
         try {
-            const user = await Axios.put('/api/user/profile', { name, address })
-            dispatch(setUser(user.data))
+            const { data } = await Axios.put('/api/user/profile', { name, address })
+            dispatch(setUser(data))
             history.push('/profile')
         } catch (error) {
             console.error(error)
@@ -96,18 +96,18 @@ export const updateProfile = (state, history) => {
 export const getCart = () => {
     return async (dispatch) => {
         try {
-            const cart = await Axios.get('/api/cart')
-            dispatch(setCart(cart.data))
+            const { data } = await Axios.get('/api/cart')
+            dispatch(setCart(data))
         } catch (error) {
             console.error(error)
         }
     }
 }
 
-export const addToCart = (id, quantity) => {
+export const addToCart = (albumId, quantity) => {
     return async () => {
         try {
-            await Axios.post('/api/cart/add', { id, quantity })
+            await Axios.post('/api/cart/add', { albumId, quantity })
         } catch (error) {
             console.error(error)
         }
@@ -118,8 +118,8 @@ export const removeFromCart = (orderId, albumId) => {
     return async (dispatch) => {
         try {
             await Axios.delete('/api/cart', { data: { orderId, albumId } })
-            const cart = await Axios.get('/api/cart')
-            dispatch(setCart(cart.data))
+            const { data } = await Axios.get('/api/cart')
+            dispatch(setCart(data))
         } catch (error) {
             console.error(error)
         }
