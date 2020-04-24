@@ -1,12 +1,13 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import Base from './Base'
-import { getCart, removeFromCart, purchase, getGuestCart, removeFromGuestCart } from '../store'
+import { getCart, removeFromCart, purchaseCart, getGuestCart, removeFromGuestCart, purchaseGuestCart } from '../store'
 
 class Cart extends Base {
     constructor() {
         super()
         this.removeAlbum = this.removeAlbum.bind(this)
+        this.purchase = this.purchase.bind(this)
     }
 
     componentDidMount() {
@@ -19,8 +20,13 @@ class Cart extends Base {
         user.id ? removeFromCart(orderId, albumId) : removeFromGuestCart(albumId)
     }
 
+    purchase(orderId) {
+        const { user, purchaseCart, purchaseGuestCart, history } = this.props
+        user.id ? purchaseCart(orderId, history) : purchaseGuestCart(history)
+    }
+
     render() {
-        const { cart, purchase, history } = this.props
+        const { cart } = this.props
         return (
             <div className="cart">
                 {cart.id && (cart.albums.length ? 
@@ -38,7 +44,7 @@ class Cart extends Base {
                     </div>
                     <div className="cart-checkout">
                         <div>Total Price: </div>
-                        <div onClick={() => purchase(cart.id, history)}>Purchase</div>
+                        <div onClick={() => this.purchase(cart.id)}>Purchase</div>
                     </div>
                 </Fragment>
                     : <div>Cart is Empty</div>)}
@@ -56,8 +62,9 @@ const mapDispatch = (dispatch) => ({
     getCart: () => dispatch(getCart()),
     getGuestCart: () => dispatch(getGuestCart()),
     removeFromCart: (orderId, albumId) => dispatch(removeFromCart(orderId, albumId)),
-    purchase: (orderId, history) => dispatch(purchase(orderId, history)),
-    removeFromGuestCart: (albumId) => dispatch(removeFromGuestCart(albumId))
+    purchaseCart: (orderId, history) => dispatch(purchaseCart(orderId, history)),
+    removeFromGuestCart: (albumId) => dispatch(removeFromGuestCart(albumId)),
+    purchaseGuestCart: (history) => dispatch(purchaseGuestCart(history))
 })
 
 export default connect(mapState, mapDispatch)(Cart)

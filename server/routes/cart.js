@@ -76,4 +76,24 @@ router.put('/purchase', async (request, response, next) => {
     }
 })
 
+router.post('/purchase', async (request, response, next) => {
+    try {
+        const order = await Orders.create({
+            address: request.body.guestCart.address,
+            purchased: true,
+            userId: null
+        })
+        request.body.guestCart.albums.map(async (album) => {
+            await Cart.create({
+                quantity: album.cart.quantity,
+                albumId: album.id,
+                orderId: order.id
+            })
+        })
+        response.status(200).json(order)
+    } catch (error) {
+        next(error)
+    }
+})
+
 module.exports = router
