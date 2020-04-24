@@ -42,7 +42,6 @@ router.post('/add', async (request, response, next) => {
         })
         const album = await Cart.create({
             quantity: request.body.quantity,
-            price: request.body.price,
             albumId: request.body.id,
             orderId: order.id
         })

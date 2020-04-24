@@ -1,12 +1,21 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import Base from './Base'
-import { getCart, removeFromCart, purchase } from '../store'
+import { getCart, removeFromCart, purchase, getGuestCart } from '../store'
 
 class Cart extends Base {
+    constructor() {
+        super()
+        this.removeAlbum = this.removeAlbum.bind(this)
+    }
+
     componentDidMount() {
-        const { getCart } = this.props
-        getCart()
+        const { getCart, getGuestCart, user } = this.props
+        user.id ? getCart() : getGuestCart()
+    }
+
+    removeAlbum() {
+
     }
 
     render() {
@@ -38,11 +47,13 @@ class Cart extends Base {
 }
 
 const mapState = (state) => ({
-    cart: state.cart
+    cart: state.cart,
+    user: state.user
 })
 
 const mapDispatch = (dispatch) => ({
     getCart: () => dispatch(getCart()),
+    getGuestCart: () => dispatch(getGuestCart()),
     removeFromCart: (orderId, albumId) => dispatch(removeFromCart(orderId, albumId)),
     purchase: (orderId, history) => dispatch(purchase(orderId, history))
 })
