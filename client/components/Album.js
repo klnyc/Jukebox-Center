@@ -28,16 +28,14 @@ class Album extends Base {
             <div className="album">
                 <img className="album-image" src={album.image} />
                 <div className="album-info">
-                    <div>{album.title}</div>
-                    <div>{album.artist}</div>
-                    <div>{album.genre}</div>
-                    <div>{album.year}</div>
-                    {album.price && <div>{this.formatPrice(album.price)}</div>}
-                    {album.inventory ? 
+                    <div className="album-title">{album.title}</div>
+                    <div className="album-artist">{album.artist}</div>
+                    <div className="album-details">{album.genre}<span>♦</span>{album.year}<span>♦</span>{album.price && this.formatPrice(album.price)}</div>
+                    {album.inventory ?
                     <Fragment>
                         <div className="stock-in">Stock: {album.inventory}</div>
                         <div>Quantity: <input className="album-quantity-input" type="number" name="quantity" value={quantity} min="1" onChange={this.handleChange} /></div>
-                        <div onClick={() => this.buyAlbum(album.id, quantity, album.genre)}>Add To Cart</div>
+                        <div className="album-add-button" onClick={() => this.buyAlbum(album.id, quantity, album.genre)}>Add To Cart</div>
                     </Fragment> : <div className="stock-out">"Out of stock!"</div>}
                 </div>
             </div>

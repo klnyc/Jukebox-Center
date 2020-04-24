@@ -95,6 +95,29 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
+    border-radius: 0.2rem;
+    border: 0.08rem solid #0000001a;
+    margin: 1rem 1rem 1rem 0;
+    background-color: #0000000d;
+}
+
+.album-title {
+    font-size: 2rem;
+}
+
+.album-details {
+    border-top: 0.08rem #00000030 solid;
+    border-bottom: 0.08rem #00000030 solid;
+    padding: 0.4rem;
+    vertical-align: center;
+    width: 80%;
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.album-details span {
+    font-size: 0.2rem;
+    margin: 1rem;
 }
 
 .album-quantity-input {
@@ -103,6 +126,11 @@ body {
     padding: .2rem;
     border-radius: 0.2rem;
     border: 0.08rem solid black;
+    margin: 0.4rem
+}
+
+.album-add-button {
+    cursor: pointer;
 }
 
 .stock-in { color: green }
