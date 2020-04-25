@@ -55,6 +55,7 @@ class Cart extends Base {
                             </div>)}
                     </div>
                     <div className="cart-checkout">
+                        <div className="cart-checkout-title">Checkout</div>
                         <div>Total Price: {this.formatPrice(this.calculateTotalPrice())}</div>
                         <div className="cart-purchase-button" onClick={() => this.purchase(cart.id)}>Purchase</div>
                     </div>

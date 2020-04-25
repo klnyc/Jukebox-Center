@@ -202,14 +202,23 @@ body {
     text-align: center;
 }
 
+.cart-checkout-title {
+    font-size: 1.6rem;
+    padding: 1rem;
+    border-bottom: 0.08rem solid #0000001a;
+    width: 70%;
+    margin: 0 auto 1rem;
+}
+
 .cart-purchase-button {
     cursor: pointer;
     width: 6rem;
-    margin: auto;
     background-color: red;
     color: white;
     border: 0.08rem solid black;
     border-radius: 0.2rem;
+    margin: 1rem auto;
+    padding: 0.2rem;
 }
 
 .profile {
