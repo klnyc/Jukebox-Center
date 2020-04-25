@@ -43,13 +43,15 @@ class Cart extends Base {
                 <Fragment>
                     <div className="cart-list">
                         {cart.albums.map(album => 
-                            <div className="albums-container" key={album.id}>
-                                <div><img className="albums-image" src={album.image} /></div>
-                                <div>{album.title}</div>
-                                <div>{album.artist}</div>
-                                <div>{this.formatPrice(album.price)}</div>
-                                <div>Quantity: {album.cart.quantity}</div>
-                                <div className="cart-remove-button" onClick={() => this.removeAlbum(cart.id, album.id)}>Remove From Cart</div>
+                            <div className="cart-albums-container" key={album.id}>
+                                <div><img className="cart-albums-image" src={album.image} /></div>
+                                <div className="cart-albums-details">
+                                    <div>{album.title}</div>
+                                    <div>{album.artist}</div>
+                                    <div>{this.formatPrice(album.price)}</div>
+                                    <div>Quantity: {album.cart.quantity}</div>
+                                    <div className="cart-remove-button" onClick={() => this.removeAlbum(cart.id, album.id)}>X</div>
+                                </div>
                             </div>)}
                     </div>
                     <div className="cart-checkout">

@@ -1,15 +1,7 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Route, BrowserRouter } from 'react-router-dom'
-import Header from './Header'
-import Navigation from './Navigation'
-import Footer from './Footer'
-import Albums from './Albums'
-import Album from './Album'
-import Authenticate from './Authenticate'
-import Profile from './Profile'
-import Cart from './Cart'
-import Confirmation from './Confirmation'
+import { Header, Navigation, Footer, Albums, Album, Authenticate, Profile, Cart, Confirmation } from './Index'
 import { loadUser } from '../store'
 
 class Main extends React.Component {

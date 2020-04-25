@@ -63,6 +63,7 @@ body {
 
 .albums {
     display: flex;
+    align-content: flex-start;
     flex-wrap: wrap;
     padding: 1rem;
     margin: auto;
@@ -71,8 +72,13 @@ body {
 
 .albums-container {
     text-align: center;
-    margin: 1rem;
+    padding: 0.6rem;
+    margin: 0.32rem;
     width: 13rem;
+    height: 15rem;
+    border-radius: 0.2rem;
+    background-color: #0000000d;
+    border: 0.08rem solid #0000001a;
 }
 
 .albums-image {
@@ -152,6 +158,41 @@ body {
     flex: 2
 }
 
+.cart-albums-container {
+    margin: 1rem;
+    border-radius: 0.2rem;
+    border: 0.08rem solid #0000001a;
+    background-color: #0000000d;
+    display: flex;
+}
+
+.cart-albums-image {
+    height: 10rem;
+    flex: 1;
+    margin: 1rem;
+}
+
+.cart-albums-details {
+    flex: 3;
+    margin: 1rem 1rem 1rem 0;
+    position: relative;
+}
+
+.cart-remove-button {
+    cursor: pointer;
+    background-color: lightgray;
+    color: black;
+    padding: 0.2rem;
+    border: 0.08rem solid #9e9e9e94;
+    border-radius: 0.6rem;
+    width: 0.6rem;
+    text-align: center;
+    font-size: 0.2rem;
+    position: absolute;
+    top: -0.6rem;
+    right: -0.6rem;
+}
+
 .cart-checkout {
     flex: 1;
     border-radius: 0.2rem;
@@ -169,10 +210,6 @@ body {
     color: white;
     border: 0.08rem solid black;
     border-radius: 0.2rem;
-}
-
-.cart-remove-button {
-    cursor: pointer;
 }
 
 .profile {
