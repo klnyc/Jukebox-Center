@@ -103,6 +103,7 @@ body {
 
 .album-title {
     font-size: 2rem;
+    text-align: center;
 }
 
 .album-details {
@@ -131,10 +132,48 @@ body {
 
 .album-add-button {
     cursor: pointer;
+    background-color: lightgray;
+    color: black;
+    padding: 0.4rem;
+    border: 0.08rem solid #9e9e9e94;
+    border-radius: 0.2rem;
+    margin-top: 0.4rem;
 }
 
 .stock-in { color: green }
 .stock-out { color: red }
+
+
+.cart {
+    display: flex;
+}
+
+.cart-list {
+    flex: 2
+}
+
+.cart-checkout {
+    flex: 1;
+    border-radius: 0.2rem;
+    border: 0.08rem solid #0000001a;
+    margin: 1rem 1rem 1rem 0;
+    background-color: #0000000d;
+    text-align: center;
+}
+
+.cart-purchase-button {
+    cursor: pointer;
+    width: 6rem;
+    margin: auto;
+    background-color: red;
+    color: white;
+    border: 0.08rem solid black;
+    border-radius: 0.2rem;
+}
+
+.cart-remove-button {
+    cursor: pointer;
+}
 
 .profile {
     text-align: center;
@@ -192,18 +231,6 @@ body {
 .profile-submit-button a {
     text-decoration: none;
     color: black;
-}
-
-.cart {
-    display: flex;
-}
-
-.cart-list {
-    flex: 2
-}
-
-.cart-checkout {
-    flex: 1;
 }
 
 .footer {

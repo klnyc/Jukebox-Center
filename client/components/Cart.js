@@ -49,12 +49,12 @@ class Cart extends Base {
                                 <div>{album.artist}</div>
                                 <div>{this.formatPrice(album.price)}</div>
                                 <div>Quantity: {album.cart.quantity}</div>
-                                <div onClick={() => this.removeAlbum(cart.id, album.id)}>Remove From Cart</div>
+                                <div className="cart-remove-button" onClick={() => this.removeAlbum(cart.id, album.id)}>Remove From Cart</div>
                             </div>)}
                     </div>
                     <div className="cart-checkout">
                         <div>Total Price: {this.formatPrice(this.calculateTotalPrice())}</div>
-                        <div onClick={() => this.purchase(cart.id)}>Purchase</div>
+                        <div className="cart-purchase-button" onClick={() => this.purchase(cart.id)}>Purchase</div>
                     </div>
                 </Fragment>
                     : <div>Cart is Empty</div>)}
