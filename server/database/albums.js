@@ -10,7 +10,7 @@ const Albums = database.define('albums', {
         }
     },
     artist: {
-        type: Sequelize.ARRAY(Sequelize.TEXT),
+        type: Sequelize.STRING,
         allowNull: false
     },
     genre: {
