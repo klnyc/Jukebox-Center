@@ -50,4 +50,4 @@ app.use((error, request, response, next) => {
     response.status(error.status || 500).send(error.message || 'Internal server error')
 })
 
-database.sync().then(() => app.listen(3000, () => console.log('Server is listening on Port 3000')))
+database.sync().then(() => app.listen(process.env.PORT || 3000, () => console.log('Server is listening on Port 3000')))
