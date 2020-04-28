@@ -109,9 +109,11 @@ export const getCart = () => {
 }
 
 export const addToCart = (albumId, quantity) => {
-    return async () => {
+    return async (dispatch) => {
         try {
-            await Axios.post('/api/cart/add', { albumId, quantity })
+            const { data } = await Axios.get('/api/cart')
+            const exist = data.albums.some(album => album.id === albumId)
+            exist ? dispatch(setError('Already added to cart')) : await Axios.post('/api/cart/add', { albumId, quantity })
         } catch (error) {
             console.error(error)
         }
@@ -155,9 +157,9 @@ export const addToGuestCart = (id, quantity, genre) => {
     return async (dispatch) => {
         try {
             const { data } = await Axios.get(`/api/albums/${genre}/${id}`)
-            const exists = guestCart.albums.some(album => album.id === id)
+            const exist = guestCart.albums.some(album => album.id === id)
             const album = { ...data, cart: { quantity } }
-            exists ? dispatch(setError('Already added to cart')) : guestCart.albums.push(album) 
+            exist ? dispatch(setError('Already added to cart')) : guestCart.albums.push(album) 
             window.localStorage.setItem("cart", JSON.stringify(guestCart))
         } catch (error) {
             console.error(error)
