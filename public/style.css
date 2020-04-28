@@ -219,6 +219,12 @@ body {
     padding: 0.2rem;
 }
 
+.confirmation {
+    margin: 1rem;
+    text-align: center;
+    padding: 1rem;
+}
+
 .profile {
     text-align: center;
 }
@@ -290,8 +296,10 @@ body {
     align-items: center;
 }
 
-.footer-link {
+.footer a {
     margin: 0 1rem;
+    text-decoration: none;
+    color: inherit;
 }
 
 .error {
@@ -301,7 +309,8 @@ body {
     text-align: center;
 }
 
-.albums-container, .album-info, .cart-albums-container, .cart-checkout, .profile-fields-container {
+.albums-container, .album-info, .cart-albums-container, 
+.cart-checkout, .profile-fields-container, .confirmation {
     border-radius: 0.2rem;
     background-color: #0000000d;
     border: 0.08rem solid #0000001a;

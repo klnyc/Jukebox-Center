@@ -3,9 +3,10 @@ import React from 'react'
 const Footer = () => {
     return (
         <div className="footer">
-            <div className="footer-link">LinkedIn</div>
-            <div className="footer-link">Instagram</div>
-            <div className="footer-link">GitHub</div>
+            <a href="https://www.linkedin.com/in/kennethklai/">LinkedIn</a>
+            <a href="https://github.com/klnyc">GitHub</a>
+            <a href="https://www.instagram.com/kl.nyc">Instagram</a>
+            <a href="https://idestination.web.app/">iDestination</a>
         </div>
     )
 }
