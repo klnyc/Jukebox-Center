@@ -19,8 +19,8 @@ class Albums extends Base {
                     <div className="albums-container" key={album.id}>
                         <Link to={`/albums/${album.genre}/${album.id}`}><img className="albums-image" src={album.image} /></Link>
                         <div>{album.title}</div>
-                        <div>{album.artist}</div>
-                        <div>{this.formatPrice(album.price)}</div>
+                        <div className="albums-artist">{album.artist}</div>
+                        <div className="albums-price">{this.formatPrice(album.price)}</div>
                     </div>
                 )}
             </div>

@@ -7,7 +7,8 @@ const initialState = {
     user: {},
     albums: [],
     album: {},
-    cart: {}
+    cart: {},
+    error: ''
 }
 
 const SET_USER = 'SET_USER'
@@ -15,12 +16,14 @@ const REMOVE_USER = 'REMOVE_USER'
 const SET_ALBUMS = 'SET_ALBUMS'
 const SET_ALBUM = 'SET_ALBUM'
 const SET_CART = 'SET_CART'
+const SET_ERROR = 'SET_ERROR'
 
 const setUser = (user) => ({ type: SET_USER, user })
 const removeUser = () => ({ type: REMOVE_USER })
 const setAlbums = (albums) => ({ type: SET_ALBUMS, albums })
 const setAlbum = (album) => ({ type: SET_ALBUM, album })
 const setCart = (cart) => ({ type: SET_CART, cart })
+export const setError = (error) => ({ type: SET_ERROR, error })
 
 export const getAlbums = (genre) => {
     return async (dispatch) => {
@@ -53,6 +56,7 @@ export const authenticate = (state, history) => {
             window.localStorage.clear()
             history.push('/')
         } catch (error) {
+            error ? dispatch(setError('Username or password is incorrect')) : null
             console.error(error)
         }
     }
@@ -148,11 +152,12 @@ export const getGuestCart = () => {
 export const addToGuestCart = (id, quantity, genre) => {
     window.localStorage.cart = window.localStorage.cart || JSON.stringify({ id: true , address: '', albums: [] })
     const guestCart = JSON.parse(window.localStorage.cart)
-    return async () => {
+    return async (dispatch) => {
         try {
             const { data } = await Axios.get(`/api/albums/${genre}/${id}`)
+            const exists = guestCart.albums.some(album => album.id === id)
             const album = { ...data, cart: { quantity } }
-            guestCart.albums.push(album)
+            exists ? dispatch(setError('Already added to cart')) : guestCart.albums.push(album) 
             window.localStorage.setItem("cart", JSON.stringify(guestCart))
         } catch (error) {
             console.error(error)
@@ -194,6 +199,8 @@ const reducer = (state = initialState, action) => {
             return { ...state, album: action.album }
         case SET_CART:
             return { ...state, cart: action.cart }
+        case SET_ERROR:
+            return { ...state, error: action.error }
         default:
             return state
     }

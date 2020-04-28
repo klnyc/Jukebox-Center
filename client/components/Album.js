@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
-import { getAlbum, addToCart, addToGuestCart } from '../store'
+import store, { getAlbum, addToCart, addToGuestCart, setError } from '../store'
 import Base from './Base'
 
 class Album extends Base {
     constructor() {
         super()
-        this.state = { quantity: 1 }
+        this.state = { quantity: 1, addedToCart: false }
         this.buyAlbum = this.buyAlbum.bind(this)
     }
 
@@ -14,16 +14,19 @@ class Album extends Base {
         const { genre, id } = this.props.match.params
         const { getAlbum } = this.props
         getAlbum(genre, id)
+        store.dispatch(setError(''))
     }
 
     buyAlbum(albumId, quantity, genre) {
         const { user, addToCart, addToGuestCart } = this.props
-        user.id ? addToCart(albumId, quantity) : addToGuestCart(albumId, quantity, genre)
+        const { addedToCart } = this.state
+        addedToCart ? null : (user.id ? addToCart(albumId, quantity) : addToGuestCart(albumId, quantity, genre))
+        this.setState({ addedToCart: true })
     }
 
     render() {
-        const { album } = this.props
-        const { quantity } = this.state
+        const { album, error } = this.props
+        const { quantity, addedToCart } = this.state
         return (
             <div className="album">
                 <img className="album-image" src={album.image} />
@@ -35,8 +38,9 @@ class Album extends Base {
                     <Fragment>
                         <div className="stock-in">Stock: {album.inventory}</div>
                         <div>Quantity: <input className="album-quantity-input" type="number" name="quantity" value={quantity} min="1" onChange={this.handleChange} /></div>
-                        <div className="album-add-button" onClick={() => this.buyAlbum(album.id, quantity, album.genre)}>Add To Cart</div>
+                        <div className={"album-add-button" + (addedToCart ? " added" : "")} onClick={() => this.buyAlbum(album.id, quantity, album.genre)}>Add To Cart</div>
                     </Fragment> : <div className="stock-out">"Out of stock!"</div>}
+                    {error && <div className="error">{error}</div>}
                 </div>
             </div>
         )
@@ -45,7 +49,8 @@ class Album extends Base {
 
 const mapState = (state) => ({
     album: state.album,
-    user: state.user
+    user: state.user,
+    error: state.error
 })
 
 const mapDispatch = (dispatch) => ({

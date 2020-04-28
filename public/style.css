@@ -76,13 +76,16 @@ body {
     margin: 0.32rem;
     width: 13rem;
     height: 15rem;
-    border-radius: 0.2rem;
-    background-color: #0000000d;
-    border: 0.08rem solid #0000001a;
 }
 
 .albums-image {
     height: 10rem;
+    margin-bottom: 0.2rem;
+}
+
+.albums-artist, .albums-price {
+    font-size: 0.88rem;
+    padding: 0.2rem 0;
 }
 
 .album {
@@ -101,10 +104,7 @@ body {
     justify-content: center;
     align-items: center;
     width: 100%;
-    border-radius: 0.2rem;
-    border: 0.08rem solid #0000001a;
     margin: 1rem 1rem 1rem 0;
-    background-color: #0000000d;
 }
 
 .album-title {
@@ -146,9 +146,13 @@ body {
     margin-top: 0.4rem;
 }
 
+.album-add-button.added {
+    cursor: default;
+    color: gray;
+}
+
 .stock-in { color: green }
 .stock-out { color: red }
-
 
 .cart {
     display: flex;
@@ -160,9 +164,6 @@ body {
 
 .cart-albums-container {
     margin: 1rem;
-    border-radius: 0.2rem;
-    border: 0.08rem solid #0000001a;
-    background-color: #0000000d;
     display: flex;
 }
 
@@ -195,10 +196,7 @@ body {
 
 .cart-checkout {
     flex: 1;
-    border-radius: 0.2rem;
-    border: 0.08rem solid #0000001a;
     margin: 1rem 1rem 1rem 0;
-    background-color: #0000000d;
     text-align: center;
 }
 
@@ -226,8 +224,6 @@ body {
 }
 
 .profile-fields-container {
-    border: 0.08rem black solid;
-    border-radius: 0.2rem;
     padding: 1rem;
     margin: 1rem;
 }
@@ -272,6 +268,12 @@ body {
 .profile-submit-button {
     cursor: pointer;
     margin: 1rem auto 0;
+    background-color: lightgray;
+    color: black;
+    padding: 0.4rem;
+    border: 0.08rem solid #9e9e9e94;
+    border-radius: 0.2rem;
+    width: 12rem;
 }
 
 .profile-submit-button a {
@@ -290,6 +292,19 @@ body {
 
 .footer-link {
     margin: 0 1rem;
+}
+
+.error {
+    margin: 1rem;
+    color: red;
+    font-style: italic;
+    text-align: center;
+}
+
+.albums-container, .album-info, .cart-albums-container, .cart-checkout, .profile-fields-container {
+    border-radius: 0.2rem;
+    background-color: #0000000d;
+    border: 0.08rem solid #0000001a;
 }
 
 .albums, .login, .profile, .cart, .confirmation { min-height: 40rem; }
