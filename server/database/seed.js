@@ -267,5 +267,113 @@ const albums = [
       "genre" : "Rock",
       "updatedAt" : "2020-04-14 16:56:13.127-04",
       "inventory" : 100
+    },
+    {
+      "artist" : "Loote",
+      "id" : 22,
+      "price" : 3400,
+      "title" : "Hearts Eyes",
+      "image" : "https://resources.tidal.com/images/bb89e73a/e1d2/4cd5/ab66/09b0c85ff53f/640x640.jpg",
+      "year" : "2020",
+      "createdAt" : "2020-04-14 16:56:13.127-04",
+      "genre" : "Pop",
+      "updatedAt" : "2020-04-14 16:56:13.127-04",
+      "inventory" : 10
+    },
+    {
+      "artist" : "Hayley Williams",
+      "id" : 23,
+      "price" : 2600,
+      "title" : "Petals For Armor II",
+      "image" : "https://resources.tidal.com/images/4031d446/4234/487d/8517/713cb8ce27f4/750x750.jpg",
+      "year" : "2020",
+      "createdAt" : "2020-04-14 16:56:13.127-04",
+      "genre" : "Pop",
+      "updatedAt" : "2020-04-14 16:56:13.127-04",
+      "inventory" : 80
+    },
+    {
+      "artist" : "Randy Houser",
+      "id" : 24,
+      "price" : 2600,
+      "title" : "How Country Feels",
+      "image" : "https://resources.tidal.com/images/e9231590/38ad/4de1/b626/03d6b4160730/750x750.jpg",
+      "year" : "2013",
+      "createdAt" : "2020-04-14 16:56:13.127-04",
+      "genre" : "Country",
+      "updatedAt" : "2020-04-14 16:56:13.127-04",
+      "inventory" : 80
+    },
+    {
+      "artist" : "Randy Houser",
+      "id" : 25,
+      "price" : 2600,
+      "title" : "They Call Me Cadillac",
+      "image" : "https://resources.tidal.com/images/3dd430fa/c1e1/4bfd/a0ec/29041c6e77cf/750x750.jpg",
+      "year" : "2010",
+      "createdAt" : "2020-04-14 16:56:13.127-04",
+      "genre" : "Country",
+      "updatedAt" : "2020-04-14 16:56:13.127-04",
+      "inventory" : 80
+    },
+    {
+      "artist" : "Big Bang",
+      "id" : 26,
+      "price" : 2600,
+      "title" : "Still Alive (Special Edition)",
+      "image" : "https://resources.tidal.com/images/c6c87ca7/1009/4d49/a7a3/36ad8b5910a1/750x750.jpg",
+      "year" : "2012",
+      "createdAt" : "2020-04-14 16:56:13.127-04",
+      "genre" : "Korean",
+      "updatedAt" : "2020-04-14 16:56:13.127-04",
+      "inventory" : 80
+    },
+    {
+      "artist" : "Big Bang",
+      "id" : 27,
+      "price" : 2800,
+      "title" : "Still Alive",
+      "image" : "https://resources.tidal.com/images/d19f0d77/16b9/4a44/8e34/d3b14bdeb67a/750x750.jpg",
+      "year" : "2012",
+      "createdAt" : "2020-04-14 16:56:13.127-04",
+      "genre" : "Korean",
+      "updatedAt" : "2020-04-14 16:56:13.127-04",
+      "inventory" : 80
+    },
+    {
+      "artist" : "Big Bang",
+      "id" : 28,
+      "price" : 2800,
+      "title" : "Big Bang",
+      "image" : "https://resources.tidal.com/images/6d276ea8/1896/47c9/a723/81ae9a80d74e/750x750.jpg",
+      "year" : "2009",
+      "createdAt" : "2020-04-14 16:56:13.127-04",
+      "genre" : "Korean",
+      "updatedAt" : "2020-04-14 16:56:13.127-04",
+      "inventory" : 80
+    },
+    {
+      "artist" : "Big Bang",
+      "id" : 29,
+      "price" : 2800,
+      "title" : "Always",
+      "image" : "https://resources.tidal.com/images/06a53a55/ead0/46ef/a811/0067911869c4/750x750.jpg",
+      "year" : "2007",
+      "createdAt" : "2020-04-14 16:56:13.127-04",
+      "genre" : "Korean",
+      "updatedAt" : "2020-04-14 16:56:13.127-04",
+      "inventory" : 80
+    },
+    {
+      "artist" : "Andy Lau",
+      "id" : 30,
+      "price" : 2800,
+      "title" : "To You",
+      "image" : "https://resources.tidal.com/images/ec133011/3124/4ba8/81de/799d247a962e/750x750.jpg",
+      "year" : "1990",
+      "createdAt" : "2020-04-14 16:56:13.127-04",
+      "genre" : "Chinese",
+      "updatedAt" : "2020-04-14 16:56:13.127-04",
+      "inventory" : 80
     }
   ]
