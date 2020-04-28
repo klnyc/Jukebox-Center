@@ -57,10 +57,20 @@ class Cart extends Base {
                     <div className="cart-checkout">
                         <div className="cart-checkout-title">Checkout</div>
                         <div>Total Price: {this.formatPrice(this.calculateTotalPrice())}</div>
+                        <div className="cart-credit-card">
+                            <div className="cart-credit-card-top">
+                                <input type="number" placeholder="Credit Card" max="9999999999999999" min="0000000000000000"></input>
+                            </div>
+                            <div className="cart-credit-card-bottom">                        
+                                <input type="number" placeholder="MM"></input>
+                                <input type="number" placeholder="YY" className="middle"></input>
+                                <input type="number" placeholder="CVC"></input>
+                            </div>
+                        </div>
                         <div className="cart-purchase-button" onClick={() => this.purchase(cart.id)}>Purchase</div>
                     </div>
                 </Fragment>
-                    : <div>Cart is Empty</div>)}
+                    : <div className="cart-empty">Cart is empty</div>)}
             </div>
         )
     }

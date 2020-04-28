@@ -198,13 +198,13 @@ body {
     flex: 1;
     margin: 1rem 1rem 1rem 0;
     text-align: center;
+    padding: 2rem;
 }
 
 .cart-checkout-title {
     font-size: 1.6rem;
     padding: 1rem;
     border-bottom: 0.08rem solid #0000001a;
-    width: 70%;
     margin: 0 auto 1rem;
 }
 
@@ -219,7 +219,43 @@ body {
     padding: 0.2rem;
 }
 
-.confirmation {
+.cart-empty {
+    width: 100%;
+}
+
+.cart-credit-card {
+    border-top: 0.08rem solid #0000001a;
+    border-bottom: 0.08rem solid #0000001a;
+    margin: 1rem auto;
+    padding: 1rem;
+}
+
+.cart-credit-card-top input {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 0.2rem;
+    padding: 0.3rem;
+    border: 0.08rem solid black;
+}
+
+.cart-credit-card-bottom {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0.4rem 0 0;
+}
+
+.cart-credit-card-bottom input {
+    width: 33%;
+    border-radius: 0.2rem;
+    padding: 0.3rem;
+    border: 0.08rem solid black;
+}
+
+.cart-credit-card-bottom .middle {
+    margin: 0 0.4rem;
+}
+
+.confirmation, .cart-empty {
     margin: 1rem;
     text-align: center;
     padding: 1rem;
@@ -310,7 +346,7 @@ body {
 }
 
 .albums-container, .album-info, .cart-albums-container, 
-.cart-checkout, .profile-fields-container, .confirmation {
+.cart-checkout, .profile-fields-container, .confirmation, .cart-empty {
     border-radius: 0.2rem;
     background-color: #0000000d;
     border: 0.08rem solid #0000001a;
