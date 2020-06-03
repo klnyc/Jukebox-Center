@@ -56,7 +56,7 @@ export const authenticate = (state, history) => {
             window.localStorage.clear()
             history.push('/')
         } catch (error) {
-            error ? dispatch(setError('Username or password is incorrect')) : null
+            error ? dispatch(setError('Username or password is invalid')) : null
             console.error(error)
         }
     }

@@ -1,12 +1,19 @@
 import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import Base from './Base'
-import { getCart, removeFromCart, purchaseCart, getGuestCart, removeFromGuestCart, purchaseGuestCart } from '../store'
+import store, { getCart, removeFromCart, purchaseCart, getGuestCart, removeFromGuestCart, purchaseGuestCart, setError } from '../store'
 
 class Cart extends Base {
     constructor() {
         super()
+        this.state = {
+            CC: '',
+            MM: '',
+            YY: '',
+            CVC: ''
+        }
         this.removeAlbum = this.removeAlbum.bind(this)
+        this.validateCreditCard = this.validateCreditCard.bind(this)
         this.purchase = this.purchase.bind(this)
         this.calculateTotalPrice = this.calculateTotalPrice.bind(this)
     }
@@ -21,9 +28,22 @@ class Cart extends Base {
         user.id ? removeFromCart(orderId, albumId) : removeFromGuestCart(albumId)
     }
 
+    validateCreditCard() {
+        const { CC, MM, YY, CVC } = this.state
+        if (CC.length !== 16 || MM.length !== 2 || YY.length !== 2 || CVC.length !== 3) return false
+        const card = Number(CC)
+        const month = Number(MM)
+        const year = Number(YY)
+        const cvc = Number(CVC)
+        if (month < 1 || month > 12 || year < 1 || cvc < 0) return false
+        return card && month && year && cvc
+    }
+
     purchase(orderId) {
         const { user, purchaseCart, purchaseGuestCart, history } = this.props
-        user.id ? purchaseCart(orderId, history) : purchaseGuestCart(history)
+        this.validateCreditCard() 
+        ? (user.id ? purchaseCart(orderId, history) : purchaseGuestCart(history))
+        : store.dispatch(setError('Invalid credit card information'))
     }
 
     calculateTotalPrice() {
@@ -36,7 +56,8 @@ class Cart extends Base {
     }
 
     render() {
-        const { cart } = this.props
+        const { cart, error } = this.props
+        const { CC, MM, YY, CVC } = this.state
         return (
             <div className="cart">
                 {cart.id && (cart.albums.length ? 
@@ -59,18 +80,18 @@ class Cart extends Base {
                         <div>Total Price: {this.formatPrice(this.calculateTotalPrice())}</div>
                         <div className="cart-credit-card">
                             <div className="cart-credit-card-top">
-                                <input type="number" placeholder="Credit Card" max="9999999999999999" min="0000000000000000"></input>
+                                <input name="CC" type="number" placeholder="Credit Card" value={CC} onChange={this.handleChange}></input>
                             </div>
                             <div className="cart-credit-card-bottom">                        
-                                <input type="number" placeholder="MM"></input>
-                                <input type="number" placeholder="YY" className="middle"></input>
-                                <input type="number" placeholder="CVC"></input>
+                                <input name="MM" type="number" placeholder="MM" value={MM} onChange={this.handleChange}></input>
+                                <input name="YY" type="number" placeholder="YY" value={YY} onChange={this.handleChange} className="middle"></input>
+                                <input name="CVC" type="number" placeholder="CVC" value={CVC} onChange={this.handleChange}></input>
                             </div>
                         </div>
                         <div className="cart-purchase-button" onClick={() => this.purchase(cart.id)}>Purchase</div>
+                        {error && <div className="error">{error}</div>}
                     </div>
-                </Fragment>
-                    : <div className="cart-empty">Cart is empty</div>)}
+                </Fragment> : <div className="cart-empty">Cart is empty</div>)}
             </div>
         )
     }
@@ -78,7 +99,8 @@ class Cart extends Base {
 
 const mapState = (state) => ({
     cart: state.cart,
-    user: state.user
+    user: state.user,
+    error: state.error
 })
 
 const mapDispatch = (dispatch) => ({
