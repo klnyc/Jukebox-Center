@@ -230,7 +230,7 @@ body {
     padding: 1rem;
 }
 
-.cart-credit-card-top input {
+.cart-credit-card-top input, .cart-address input {
     width: 100%;
     box-sizing: border-box;
     border-radius: 0.2rem;
@@ -255,6 +255,16 @@ body {
 
 .cart-credit-card-bottom .middle {
     margin: 0 0.4rem;
+}
+
+.cart-address-container {
+    border-bottom: 0.08rem solid #0000001a;
+    margin: 1rem auto;
+    padding: 0 auto 1rem;
+}
+
+.cart-address {
+    padding: 1rem;
 }
 
 .confirmation, .cart-empty {

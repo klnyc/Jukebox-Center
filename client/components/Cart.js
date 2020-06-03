@@ -20,6 +20,7 @@ class Cart extends Base {
 
     componentDidMount() {
         const { getCart, getGuestCart, user } = this.props
+        store.dispatch(setError(''))
         user.id ? getCart() : getGuestCart()
     }
 
@@ -41,7 +42,7 @@ class Cart extends Base {
 
     purchase(orderId) {
         const { user, purchaseCart, purchaseGuestCart, history } = this.props
-        this.validateCreditCard() 
+        this.validateCreditCard()
         ? (user.id ? purchaseCart(orderId, history) : purchaseGuestCart(history))
         : store.dispatch(setError('Invalid credit card information'))
     }
@@ -56,8 +57,9 @@ class Cart extends Base {
     }
 
     render() {
-        const { cart, error } = this.props
+        const { user, cart, error } = this.props
         const { CC, MM, YY, CVC } = this.state
+        console.log(cart)
         return (
             <div className="cart">
                 {cart.id && (cart.albums.length ? 
@@ -87,6 +89,10 @@ class Cart extends Base {
                                 <input name="YY" type="number" placeholder="YY" value={YY} onChange={this.handleChange} className="middle"></input>
                                 <input name="CVC" type="number" placeholder="CVC" value={CVC} onChange={this.handleChange}></input>
                             </div>
+                        </div>
+                        <div className="cart-address-container">
+                            <div>Address</div>
+                            <div className="cart-address"><input type="text" placeholder="Address"></input></div>
                         </div>
                         <div className="cart-purchase-button" onClick={() => this.purchase(cart.id)}>Purchase</div>
                         {error && <div className="error">{error}</div>}
