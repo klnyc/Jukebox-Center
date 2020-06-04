@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const Users = require('../database/users')
+const Orders = require('../database/orders')
 
 router.get('/', (request, response, next) => {
     try {
@@ -48,7 +49,15 @@ router.put('/profile', async (request, response) => {
         const { name, address } = request.body
         const user = await Users.findByPk(request.user.id)
         if (name) await user.update({ name })
-        if (address) await user.update({ address })
+        if (address) {
+            await user.update({ address })
+            const order = await Orders.findOne({
+                where: {
+                    userId: request.user.id
+                }
+            })
+            await order.update({ address })
+        }
         const updatedUser = await Users.findByPk(request.user.id)
         response.status(200).json(updatedUser)
     } catch (error) {
