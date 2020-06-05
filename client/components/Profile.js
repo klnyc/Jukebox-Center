@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Base from './Base'
-import { updateProfile } from '../store'
+import { updateProfile, getOrderHistory } from '../store'
 
 class Profile extends Base {
     constructor() {
@@ -20,15 +20,16 @@ class Profile extends Base {
     }
 
     componentDidMount() {
-        const { user } = this.props
+        const { user, getOrderHistory } = this.props
         const fields = [
             { category: "Email", data: user.email },
             { category: "Name", data: user.name },
             { category: "Address", data: user.address }
         ]
+        getOrderHistory()
         this.props.match.path === '/profile/edit'
         ? this.setState({ edit: true, fields }) 
-        : this.setState({ edit:false, fields })
+        : this.setState({ edit: false, fields })
     }
 
     handleSubmit(event) {
@@ -75,10 +76,29 @@ class Profile extends Base {
 
     render() {
         const { edit, fields } = this.state
+        const { orderHistory } = this.props
         return (
             <div className="profile">
-                <div className="profile-fields-container">
-                {edit ? this.renderProfileEdit(fields) : this.renderProfile(fields)}
+                <div className="profile-information">
+                    {edit ? this.renderProfileEdit(fields) : this.renderProfile(fields)}
+                </div>
+                <div className="profile-orders">
+                    <div>Order History</div>
+                    <div className="profile-orders-list">
+                        {orderHistory.map(order => 
+                            order.albums.map(album =>
+                                <div className="cart-albums-container" key={album.cart.albumId}>
+                                    <div><img className="cart-albums-image" src={album.image} /></div>
+                                    <div className="cart-albums-details">
+                                        <div>{album.title}</div>
+                                        <div>{album.artist}</div>
+                                        <div>{this.formatPrice(album.price)}</div>
+                                        <div>Quantity: {album.cart.quantity}</div>
+                                        <div>Date: {order.updatedAt.slice(0,10)}</div>
+                                    </div>
+                                </div>)
+                            )}
+                    </div>
                 </div>
             </div>
         )
@@ -86,11 +106,13 @@ class Profile extends Base {
 }
 
 const mapState = (state) => ({
-    user: state.user
+    user: state.user,
+    orderHistory: state.orderHistory
 })
 
 const mapDispatch = (dispatch) => ({
-    updateProfile: (state, history) => dispatch(updateProfile(state, history))
+    updateProfile: (state, history) => dispatch(updateProfile(state, history)),
+    getOrderHistory: () => dispatch(getOrderHistory())
 })
 
 export default connect(mapState, mapDispatch)(Profile)

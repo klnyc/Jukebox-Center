@@ -8,6 +8,7 @@ const initialState = {
     albums: [],
     album: {},
     cart: {},
+    orderHistory: [],
     error: ''
 }
 
@@ -16,6 +17,7 @@ const REMOVE_USER = 'REMOVE_USER'
 const SET_ALBUMS = 'SET_ALBUMS'
 const SET_ALBUM = 'SET_ALBUM'
 const SET_CART = 'SET_CART'
+const SET_ORDER_HISTORY = 'SET_ORDER_HISTORY'
 const SET_ERROR = 'SET_ERROR'
 
 const setUser = (user) => ({ type: SET_USER, user })
@@ -23,6 +25,7 @@ const removeUser = () => ({ type: REMOVE_USER })
 const setAlbums = (albums) => ({ type: SET_ALBUMS, albums })
 const setAlbum = (album) => ({ type: SET_ALBUM, album })
 const setCart = (cart) => ({ type: SET_CART, cart })
+const setOrderHistory = (orderHistory) => ({ type: SET_ORDER_HISTORY, orderHistory })
 export const setError = (error) => ({ type: SET_ERROR, error })
 
 export const getAlbums = (genre) => {
@@ -190,6 +193,17 @@ export const purchaseGuestCart = (address, history) => {
     }
 }
 
+export const getOrderHistory = () => {
+    return async (dispatch) => {
+        try {
+            const { data } = await Axios.get('/api/user/orderhistory')
+            dispatch(setOrderHistory(data))
+        } catch (error) {
+            console.error(error)
+        }
+    }
+}
+
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USER:
@@ -202,6 +216,8 @@ const reducer = (state = initialState, action) => {
             return { ...state, album: action.album }
         case SET_CART:
             return { ...state, cart: action.cart }
+        case SET_ORDER_HISTORY:
+            return { ...state, orderHistory: action.orderHistory }
         case SET_ERROR:
             return { ...state, error: action.error }
         default:

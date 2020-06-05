@@ -277,7 +277,7 @@ body {
     text-align: center;
 }
 
-.profile-fields-container {
+.profile-information {
     padding: 1rem;
     margin: 1rem;
 }
@@ -335,6 +335,12 @@ body {
     color: black;
 }
 
+.profile-orders {
+    min-height: 23.4rem;
+    margin: 0 1rem 1rem;
+    padding-top: 1rem;
+}
+
 .footer {
     display: flex;
     justify-content: center;
@@ -358,7 +364,7 @@ body {
 }
 
 .albums-container, .album-info, .cart-albums-container, 
-.cart-checkout, .profile-fields-container, .confirmation, .cart-empty {
+.cart-checkout, .profile-information, .profile-orders, .confirmation, .cart-empty {
     border-radius: 0.2rem;
     background-color: #0000000d;
     border: 0.08rem solid #0000001a;

@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const Users = require('../database/users')
 const Orders = require('../database/orders')
+const Albums = require('../database/albums')
 
 router.get('/', (request, response, next) => {
     try {
@@ -60,6 +61,22 @@ router.put('/profile', async (request, response) => {
         }
         const updatedUser = await Users.findByPk(request.user.id)
         response.status(200).json(updatedUser)
+    } catch (error) {
+        next(error)
+    }
+})
+
+
+router.get('/orderhistory', async (request, response, next) => {
+    try {
+        const orderHistory = await Orders.findAll({
+            where: {
+                userId: request.user.id,
+                purchased: true
+            },
+            include: [{ model: Albums }]
+        })
+        response.json(orderHistory)
     } catch (error) {
         next(error)
     }
