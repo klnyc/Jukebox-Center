@@ -36,21 +36,21 @@ class Cart extends Base {
     }
 
     validateCreditCard() {
-        const { CC, MM, YY, CVC } = this.state
+        const { CC, MM, YY, CVC, address } = this.state
         if (CC.length !== 16 || MM.length !== 2 || YY.length !== 2 || CVC.length !== 3) return false
         const card = Number(CC)
         const month = Number(MM)
         const year = Number(YY)
         const cvc = Number(CVC)
         if (month < 1 || month > 12 || year < 1 || cvc < 0) return false
-        return card && month && year && cvc
+        return card && month && year && cvc && address
     }
 
-    purchase(orderId) {
+    purchase(orderId, address) {
         const { user, purchaseCart, purchaseGuestCart, history } = this.props
         this.validateCreditCard()
-        ? (user.id ? purchaseCart(orderId, history) : purchaseGuestCart(history))
-        : store.dispatch(setError('Invalid credit card information'))
+        ? (user.id ? purchaseCart(orderId, address, history) : purchaseGuestCart(history))
+        : store.dispatch(setError('Invalid credit card and address'))
     }
 
     calculateTotalPrice() {
@@ -99,7 +99,7 @@ class Cart extends Base {
                             <div>Address</div>
                             <div className="cart-address"><input name="address" type="text" placeholder="Address" value={address} onChange={this.handleChange}></input></div>
                         </div>
-                        <div className="cart-purchase-button" onClick={() => this.purchase(cart.id)}>Purchase</div>
+                        <div className="cart-purchase-button" onClick={() => this.purchase(cart.id, address)}>Purchase</div>
                         {error && <div className="error">{error}</div>}
                     </div>
                 </Fragment> : <div className="cart-empty">Cart is empty</div>)}
@@ -118,7 +118,7 @@ const mapDispatch = (dispatch) => ({
     getCart: () => dispatch(getCart()),
     getGuestCart: () => dispatch(getGuestCart()),
     removeFromCart: (orderId, albumId) => dispatch(removeFromCart(orderId, albumId)),
-    purchaseCart: (orderId, history) => dispatch(purchaseCart(orderId, history)),
+    purchaseCart: (orderId, address, history) => dispatch(purchaseCart(orderId, address, history)),
     removeFromGuestCart: (albumId) => dispatch(removeFromGuestCart(albumId)),
     purchaseGuestCart: (history) => dispatch(purchaseGuestCart(history))
 })

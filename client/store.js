@@ -132,10 +132,10 @@ export const removeFromCart = (orderId, albumId) => {
     }
 }
 
-export const purchaseCart = (orderId, history) => {
+export const purchaseCart = (orderId, address, history) => {
     return async () => {
         try {
-            await Axios.put('/api/cart/purchase', { orderId })
+            await Axios.put('/api/cart/purchase', { orderId, address })
             history.push('/confirmation')
         } catch (error) {
             console.error(error)
