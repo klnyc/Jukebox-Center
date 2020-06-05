@@ -95,12 +95,14 @@ router.post('/purchase', async (request, response, next) => {
             purchased: true,
             userId: null
         })
-        request.body.guestCart.albums.map(async (album) => {
+        request.body.guestCart.albums.forEach(async (album) => {
             await Cart.create({
                 quantity: album.cart.quantity,
                 albumId: album.id,
                 orderId: order.id
             })
+            const stockAlbum = await Albums.findByPk(album.id)
+            await stockAlbum.update({ inventory: stockAlbum.inventory - album.cart.quantity })
         })
         response.status(200).json(order)
     } catch (error) {
