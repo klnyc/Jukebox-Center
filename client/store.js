@@ -176,10 +176,11 @@ export const removeFromGuestCart = (albumId) => {
     }
 }
 
-export const purchaseGuestCart = (history) => {
+export const purchaseGuestCart = (address, history) => {
     return async () => {
         try {
-            const guestCart = JSON.parse(window.localStorage.cart)
+            let guestCart = JSON.parse(window.localStorage.cart)
+            guestCart = { ...guestCart, address }
             await Axios.post('/api/cart/purchase', { guestCart })
             window.localStorage.clear()
             history.push('/confirmation')

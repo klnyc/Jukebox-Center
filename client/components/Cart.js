@@ -49,7 +49,7 @@ class Cart extends Base {
     purchase(orderId, address) {
         const { user, purchaseCart, purchaseGuestCart, history } = this.props
         this.validateCreditCard()
-        ? (user.id ? purchaseCart(orderId, address, history) : purchaseGuestCart(history))
+        ? (user.id ? purchaseCart(orderId, address, history) : purchaseGuestCart(address, history))
         : store.dispatch(setError('Invalid credit card and address'))
     }
 
@@ -120,7 +120,7 @@ const mapDispatch = (dispatch) => ({
     removeFromCart: (orderId, albumId) => dispatch(removeFromCart(orderId, albumId)),
     purchaseCart: (orderId, address, history) => dispatch(purchaseCart(orderId, address, history)),
     removeFromGuestCart: (albumId) => dispatch(removeFromGuestCart(albumId)),
-    purchaseGuestCart: (history) => dispatch(purchaseGuestCart(history))
+    purchaseGuestCart: (address, history) => dispatch(purchaseGuestCart(address, history))
 })
 
 export default connect(mapState, mapDispatch)(Cart)
