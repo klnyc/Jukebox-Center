@@ -17,11 +17,16 @@ class Album extends Base {
         store.dispatch(setError(''))
     }
 
-    buyAlbum(albumId, quantity, genre) {
+    buyAlbum(albumId, inventory, quantity, genre) {
         const { user, addToCart, addToGuestCart } = this.props
         const { addedToCart } = this.state
-        addedToCart ? null : (user.id ? addToCart(albumId, quantity) : addToGuestCart(albumId, quantity, genre))
-        this.setState({ addedToCart: true })
+        if (quantity > inventory || quantity < 1) {
+            store.dispatch(setError('Not enough in stock')) 
+        } else {
+            addedToCart ? null : (user.id ? addToCart(albumId, quantity) : addToGuestCart(albumId, quantity, genre))
+            this.setState({ addedToCart: true })
+            store.dispatch(setError('')) 
+        }
     }
 
     render() {
@@ -38,7 +43,7 @@ class Album extends Base {
                     <Fragment>
                         <div className="stock-in">Stock: {album.inventory}</div>
                         <div>Quantity: <input className="album-quantity-input" type="number" name="quantity" value={quantity} min="1" onChange={this.handleChange} /></div>
-                        <div className={"album-add-button" + (addedToCart ? " added" : "")} onClick={() => this.buyAlbum(album.id, quantity, album.genre)}>Add To Cart</div>
+                        <div className={"album-add-button" + (addedToCart ? " added" : "")} onClick={() => this.buyAlbum(album.id, album.inventory, quantity, album.genre)}>Add To Cart</div>
                     </Fragment> : <div className="stock-out">"Out of stock!"</div>}
                     {error && <div className="error">{error}</div>}
                 </div>
