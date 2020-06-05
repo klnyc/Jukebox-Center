@@ -73,6 +73,15 @@ router.put('/purchase', async (request, response, next) => {
             purchased: true,
             address: request.body.address
         })
+        const albums = await Cart.findAll({
+            where: {
+                orderId: request.body.orderId
+            }
+        })
+        albums.forEach(async (album) => {
+            const stockAlbum = await Albums.findByPk(album.albumId)
+            await stockAlbum.update({ inventory: stockAlbum.inventory - album.quantity})
+        })
         response.sendStatus(200)
     } catch (error) {
         next(error)
