@@ -25,8 +25,8 @@ class Cart extends Base {
         store.dispatch(setError(''))
         user.id ? getCart() : getGuestCart()
         setTimeout(() => {
-            const { cart } = self.props
-            this.setState({ address: cart.address })
+            const { user } = self.props
+            this.setState({ address: user.address })
         }, 200)
     }
 
