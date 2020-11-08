@@ -2,6 +2,8 @@ body {
     margin: 0;
     font-family: "Gill Sans", sans-serif;
     background-color: ghostwhite;
+    position: relative;
+    min-height: 100vh;
 }
 
 .header {
@@ -65,7 +67,7 @@ body {
     display: flex;
     align-content: flex-start;
     flex-wrap: wrap;
-    padding: 1rem;
+    padding: 1rem 1rem 6.6rem;
     margin: auto;
     width: 60rem;
 }
@@ -348,6 +350,9 @@ body {
     color: white;
     height: 6rem;
     align-items: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
 .footer a {
