@@ -12,7 +12,7 @@ Front End
 * HTML
 
 Back End
-* PostgresSQL
+* PostgreSQL
 * Sequelize
 
 Other
