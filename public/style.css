@@ -6,6 +6,10 @@ body {
     min-height: 100vh;
 }
 
+#app {
+    min-height: 45rem;
+}
+
 .header {
     height: 2.8rem;
     display: flex;
@@ -350,9 +354,9 @@ body {
     color: white;
     height: 6rem;
     align-items: center;
+    width: 100%;
     position: absolute;
     bottom: 0;
-    width: 100%;
 }
 
 .footer a {
