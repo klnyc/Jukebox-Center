@@ -1,7 +1,7 @@
-let config
+let configuraton
 
 if (process.env.DATABASE_URL) {
-  config = {
+    configuraton = {
     logging: false,
     operatorsAliases: false,
     dialect: 'postgres',
@@ -15,12 +15,12 @@ if (process.env.DATABASE_URL) {
     }
   }
 } else {
-  config = {
-    logging: false
-  }
+    configuraton = { 
+        logging: false 
+    }
 }
 
 const Sequelize = require('sequelize')
-const database = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost:5432/jukeboxcenter', config)
+const database = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost:5432/jukeboxcenter', configuraton)
 
 module.exports = database
