@@ -1,6 +1,6 @@
 body {
     margin: 0;
-    font-family: "Gill Sans", sans-serif;
+    font-family: "Verdana", sans-serif;
     background-color: ghostwhite;
     position: relative;
     min-height: 100vh;
@@ -42,7 +42,11 @@ body {
 .navigation-genre {
     margin: 0 1rem;
     text-decoration: none;
-    color: white;
+    color: ghostwhite;
+}
+
+.navigation-genre.selected-genre {
+    color: indianred
 }
 
 .login-input-container {

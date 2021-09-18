@@ -1261,31 +1261,52 @@ var Navigation = /*#__PURE__*/function (_React$Component) {
   var _super = _createSuper(Navigation);
 
   function Navigation() {
+    var _this;
+
     _classCallCheck(this, Navigation);
 
-    return _super.apply(this, arguments);
+    _this = _super.call(this);
+    _this.state = {
+      currentGenre: ""
+    };
+    _this.setCurrentGenre = _this.setCurrentGenre.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(Navigation, [{
+    key: "setCurrentGenre",
+    value: function setCurrentGenre(selectedGenre) {
+      this.setState({
+        currentGenre: selectedGenre
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
+      var currentGenre = this.state.currentGenre;
       var getAlbums = this.props.getAlbums;
       var genres = ['Chinese', 'Country', 'Korean', 'Pop', 'R&B', 'Rap', 'Rock'];
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "navigation"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: '/albums',
-        className: "navigation-genre",
+        className: currentGenre === "All" ? "navigation-genre selected-genre" : "navigation-genre",
         onClick: function onClick() {
-          return getAlbums();
+          getAlbums();
+
+          _this2.setCurrentGenre("All");
         }
       }, "All"), genres.map(function (genre, index) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
           to: "/albums/".concat(genre),
-          className: "navigation-genre",
+          className: currentGenre === genre ? "navigation-genre selected-genre" : "navigation-genre",
           key: index,
           onClick: function onClick() {
-            return getAlbums(genre);
+            getAlbums(genre);
+
+            _this2.setCurrentGenre(genre);
           }
         }, genre);
       }));
