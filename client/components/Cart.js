@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import Base from './Base'
 import store, { getCart, removeFromCart, purchaseCart, getGuestCart, removeFromGuestCart, purchaseGuestCart, setError } from '../store'
+import { IoIosClose } from "react-icons/io"
 
 class Cart extends Base {
     constructor() {
@@ -78,7 +79,7 @@ class Cart extends Base {
                                     <div>{album.artist}</div>
                                     <div>{this.formatPrice(album.price)}</div>
                                     <div>Quantity: {album.cart.quantity}</div>
-                                    <div className="cart-remove-button" onClick={() => this.removeAlbum(cart.id, album.id)}>X</div>
+                                    <div className="cart-remove-button" onClick={() => this.removeAlbum(cart.id, album.id)}><IoIosClose /></div>
                                 </div>
                             </div>)}
                     </div>

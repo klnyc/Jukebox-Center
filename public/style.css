@@ -24,6 +24,10 @@ body {
     color: black;
 }
 
+.header-link:hover {
+    color: indianred;
+}
+
 .header-login {
     display: flex;
     justify-content: space-around;
@@ -146,7 +150,17 @@ body {
     margin: 0.4rem
 }
 
-.album-add-button {
+.album-quantity-input::-webkit-outer-spin-button,
+.album-quantity-input::-webkit-inner-spin-button,
+.cart-credit-card-top input::-webkit-outer-spin-button,
+.cart-credit-card-top input::-webkit-inner-spin-button,
+.cart-credit-card-bottom input::-webkit-outer-spin-button,
+.cart-credit-card-bottom input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.album-add-button, .login-submit-button {
     cursor: pointer;
     background-color: lightgray;
     color: black;
@@ -154,6 +168,10 @@ body {
     border: 0.08rem solid #9e9e9e94;
     border-radius: 0.2rem;
     margin-top: 0.4rem;
+}
+
+.album-add-button:hover, .login-submit-button:hover, .profile-submit-button:hover {
+    background-color: rgb(202, 200, 200);
 }
 
 .album-add-button.added {
@@ -192,14 +210,6 @@ body {
 
 .cart-remove-button {
     cursor: pointer;
-    background-color: lightgray;
-    color: black;
-    padding: 0.2rem;
-    border: 0.08rem solid #9e9e9e94;
-    border-radius: 0.24rem;
-    width: 0.6rem;
-    text-align: center;
-    font-size: 0.2rem;
     position: absolute;
     top: -0.6rem;
     right: -0.6rem;
@@ -352,9 +362,8 @@ body {
 }
 
 .profile-orders {
-    min-height: 23.4rem;
     margin: 0 1rem 1rem;
-    padding-top: 1rem;
+    padding: 1rem;
 }
 
 .footer {
