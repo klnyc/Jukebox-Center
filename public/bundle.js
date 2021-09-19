@@ -832,7 +832,7 @@ var Cart = /*#__PURE__*/function (_Base) {
         className: "error"
       }, error))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "cart-empty"
-      }, "Cart is empty")));
+      }, "CART IS EMPTY")));
     }
   }]);
 

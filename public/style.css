@@ -166,6 +166,7 @@ body {
 
 .cart {
     display: flex;
+    padding-bottom: 6rem;
 }
 
 .cart-list {
@@ -209,6 +210,7 @@ body {
     margin: 1rem 1rem 1rem 0;
     text-align: center;
     padding: 2rem;
+    min-height: 26rem;
 }
 
 .cart-checkout-title {
@@ -221,12 +223,16 @@ body {
 .cart-purchase-button {
     cursor: pointer;
     width: 6rem;
-    background-color: red;
+    background-color: indianred;
     color: white;
     border: 0.08rem solid black;
     border-radius: 0.2rem;
     margin: 1rem auto;
     padding: 0.2rem;
+}
+
+.cart-purchase-button:hover {
+    background-color: rgb(216, 90, 90);
 }
 
 .cart-empty {
@@ -382,8 +388,6 @@ body {
     background-color: #0000000d;
     border: 0.08rem solid #0000001a;
 }
-
-.albums, .login, .profile, .cart, .confirmation { min-height: 40rem; }
 
 @media only screen and (max-width: 992px) {
     .albums {

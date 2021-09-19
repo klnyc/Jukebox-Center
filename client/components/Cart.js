@@ -102,7 +102,7 @@ class Cart extends Base {
                         <div className="cart-purchase-button" onClick={() => this.purchase(cart.id, address)}>Purchase</div>
                         {error && <div className="error">{error}</div>}
                     </div>
-                </Fragment> : <div className="cart-empty">Cart is empty</div>)}
+                </Fragment> : <div className="cart-empty">CART IS EMPTY</div>)}
             </div>
         )
     }
