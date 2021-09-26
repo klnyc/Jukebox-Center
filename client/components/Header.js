@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { logout } from '../store'
+import store, { setCurrentGenre, logout } from '../store'
 import { GiMusicalNotes } from "react-icons/gi"
 
 class Header extends React.Component {
@@ -14,7 +14,7 @@ class Header extends React.Component {
         const { user, logout } = this.props
         return user.id ? 
         <Fragment>
-            <Link to="/profile" className="header-link">{user.email}</Link>
+            <Link to="/profile" className="header-link" onClick={() => { store.dispatch(setCurrentGenre(""))}}>{user.email}</Link>
             <Link to="/" className="header-link" onClick={() => logout()}>Log Out</Link>
         </Fragment> :
         <Fragment>
@@ -26,10 +26,10 @@ class Header extends React.Component {
     render() {
         return (
             <div className="header">
-                <Link to="/" className="header-link"><GiMusicalNotes /> Jukebox Center</Link>
+                <Link to="/" className="header-link" onClick={() => { store.dispatch(setCurrentGenre("All"))}}><GiMusicalNotes /> Jukebox Center</Link>
                 <div className="header-login">
                     {this.renderLoginLinks()}
-                    <Link to="/cart" className="header-link">Cart</Link>
+                    <Link to="/cart" className="header-link" onClick={() => { store.dispatch(setCurrentGenre(""))}}>Cart</Link>
                 </div>
             </div>
         )

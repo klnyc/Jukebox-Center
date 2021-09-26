@@ -26,7 +26,7 @@ const setUser = (user) => ({ type: SET_USER, user })
 const removeUser = () => ({ type: REMOVE_USER })
 const setAlbums = (albums) => ({ type: SET_ALBUMS, albums })
 const setAlbum = (album) => ({ type: SET_ALBUM, album })
-const setCurrentGenre = (currentGenre) => ({ type: SET_CURRENT_GENRE, currentGenre })
+export const setCurrentGenre = (currentGenre) => ({ type: SET_CURRENT_GENRE, currentGenre })
 const setCart = (cart) => ({ type: SET_CART, cart })
 const setOrderHistory = (orderHistory) => ({ type: SET_ORDER_HISTORY, orderHistory })
 export const setError = (error) => ({ type: SET_ERROR, error })
@@ -36,7 +36,6 @@ export const getAlbums = (genre) => {
         try {
             const { data } = genre ? await Axios.get(`/api/albums/${genre}`) : await Axios.get('/api/albums')
             dispatch(setAlbums(data))
-            genre ? dispatch(setCurrentGenre(genre)) : dispatch(setCurrentGenre("All"))
         } catch (error) {
             console.error('Error with albums!')
         }

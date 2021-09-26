@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { getAlbums } from '../store'
+import store, { getAlbums, setCurrentGenre } from '../store'
 
 class Navigation extends React.Component {
     render() {
@@ -12,7 +12,7 @@ class Navigation extends React.Component {
                 <Link 
                     to={'/albums'} 
                     className={currentGenre === "All" ? "navigation-genre selected-genre" : "navigation-genre"} 
-                    onClick={() => { getAlbums() }}>
+                    onClick={() => { getAlbums(); store.dispatch(setCurrentGenre("All")) }}>
                     All
                 </Link>
                 {genres.map((genre, index) => 
@@ -20,7 +20,7 @@ class Navigation extends React.Component {
                         to={`/albums/${genre}`} 
                         className={currentGenre === genre ? "navigation-genre selected-genre" : "navigation-genre"}
                         key={index}
-                        onClick={() => { getAlbums(genre) }}>
+                        onClick={() => { getAlbums(genre); store.dispatch(setCurrentGenre(genre)) }}>
                         {genre}
                     </Link>)}
             </div>
