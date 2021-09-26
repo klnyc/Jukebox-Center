@@ -90,9 +90,9 @@ class Profile extends Base {
                                 <div className="cart-albums-container" key={album.cart.albumId}>
                                     <div><img className="cart-albums-image" src={album.image} /></div>
                                     <div className="cart-albums-details">
-                                        <div>{album.title}</div>
-                                        <div>{album.artist}</div>
-                                        <div>{this.formatPrice(album.price)}</div>
+                                        <div>Title: {album.title}</div>
+                                        <div>Artist: {album.artist}</div>
+                                        <div>Price: {this.formatPrice(album.price)}</div>
                                         <div>Quantity: {album.cart.quantity}</div>
                                         <div>Date: {order.updatedAt.slice(0,10)}</div>
                                     </div>

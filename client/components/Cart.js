@@ -75,9 +75,9 @@ class Cart extends Base {
                             <div className="cart-albums-container" key={album.id}>
                                 <div><img className="cart-albums-image" src={album.image} /></div>
                                 <div className="cart-albums-details">
-                                    <div>{album.title}</div>
-                                    <div>{album.artist}</div>
-                                    <div>{this.formatPrice(album.price)}</div>
+                                    <div>Title: {album.title}</div>
+                                    <div>Artist: {album.artist}</div>
+                                    <div>Price: {this.formatPrice(album.price)}</div>
                                     <div>Quantity: {album.cart.quantity}</div>
                                     <div className="cart-remove-button" onClick={() => this.removeAlbum(cart.id, album.id)}><IoIosClose /></div>
                                 </div>
