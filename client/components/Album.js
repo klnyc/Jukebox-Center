@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import store, { getAlbum, addToCart, addToGuestCart, setError } from '../store'
 import Base from './Base'
+import { ImDiamonds } from "react-icons/im";
 
 class Album extends Base {
     constructor() {
@@ -37,7 +38,7 @@ class Album extends Base {
                 <div className="album-info">
                     <div className="album-title">{album.title}</div>
                     <div className="album-artist">{album.artist}</div>
-                    <div className="album-details">{album.genre}<span>♦</span>{album.year}<span>♦</span>{album.price && this.formatPrice(album.price)}</div>
+                    <div className="album-details">{album.genre}<ImDiamonds className="album-details-diamond" />{album.year}<ImDiamonds className="album-details-diamond" />{album.price && this.formatPrice(album.price)}</div>
                     {album.inventory ?
                     <Fragment>
                         <div className="stock-in">Stock: {album.inventory}</div>
