@@ -1,9 +1,10 @@
 import React from 'react'
+import { GiMusicalNotes } from "react-icons/gi"
 
 const Footer = () => {
     return (
         <div className="footer">
-            <div>Jukebox Center</div>
+            <div><GiMusicalNotes /> Jukebox Center</div>
         </div>
     )
 }

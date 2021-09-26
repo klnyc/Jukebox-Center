@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { logout } from '../store'
+import { GiMusicalNotes } from "react-icons/gi"
 
 class Header extends React.Component {
     constructor() {
@@ -25,7 +26,7 @@ class Header extends React.Component {
     render() {
         return (
             <div className="header">
-                <Link to="/" className="header-link">Jukebox Center</Link>
+                <Link to="/" className="header-link"><GiMusicalNotes /> Jukebox Center</Link>
                 <div className="header-login">
                     {this.renderLoginLinks()}
                     <Link to="/cart" className="header-link">Cart</Link>
