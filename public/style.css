@@ -136,9 +136,8 @@ body {
     margin: 1rem 0;
 }
 
-.album-details span {
-    font-size: 0.2rem;
-    margin: 1rem;
+.album-detail-diamond {
+    font-size: 0.66rem;
 }
 
 .album-quantity-input {
