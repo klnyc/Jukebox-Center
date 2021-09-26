@@ -7,6 +7,7 @@ const initialState = {
     user: {},
     albums: [],
     album: {},
+    currentGenre: "",
     cart: {},
     orderHistory: [],
     error: ''
@@ -16,6 +17,7 @@ const SET_USER = 'SET_USER'
 const REMOVE_USER = 'REMOVE_USER'
 const SET_ALBUMS = 'SET_ALBUMS'
 const SET_ALBUM = 'SET_ALBUM'
+const SET_CURRENT_GENRE = 'SET_CURRENT_GENRE'
 const SET_CART = 'SET_CART'
 const SET_ORDER_HISTORY = 'SET_ORDER_HISTORY'
 const SET_ERROR = 'SET_ERROR'
@@ -24,6 +26,7 @@ const setUser = (user) => ({ type: SET_USER, user })
 const removeUser = () => ({ type: REMOVE_USER })
 const setAlbums = (albums) => ({ type: SET_ALBUMS, albums })
 const setAlbum = (album) => ({ type: SET_ALBUM, album })
+const setCurrentGenre = (currentGenre) => ({ type: SET_CURRENT_GENRE, currentGenre })
 const setCart = (cart) => ({ type: SET_CART, cart })
 const setOrderHistory = (orderHistory) => ({ type: SET_ORDER_HISTORY, orderHistory })
 export const setError = (error) => ({ type: SET_ERROR, error })
@@ -33,6 +36,7 @@ export const getAlbums = (genre) => {
         try {
             const { data } = genre ? await Axios.get(`/api/albums/${genre}`) : await Axios.get('/api/albums')
             dispatch(setAlbums(data))
+            genre ? dispatch(setCurrentGenre(genre)) : dispatch(setCurrentGenre("All"))
         } catch (error) {
             console.error('Error with albums!')
         }
@@ -214,6 +218,8 @@ const reducer = (state = initialState, action) => {
             return { ...state, albums: action.albums }
         case SET_ALBUM:
             return { ...state, album: action.album }
+        case SET_CURRENT_GENRE:
+            return { ...state, currentGenre: action. currentGenre }
         case SET_CART:
             return { ...state, cart: action.cart }
         case SET_ORDER_HISTORY:
