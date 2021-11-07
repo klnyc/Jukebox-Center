@@ -428,7 +428,10 @@ body {
 
     .header-link {
         margin: 0.6rem;
-        font-size: 1.2rem;
+    }
+
+    .header-login {
+        font-size: 0.8rem;
     }
 
     .album {
@@ -447,6 +450,38 @@ body {
     }
 
     .footer {
-        position: relative;
+        display: none;
+    }
+
+    .cart-albums-container {
+        display: revert;
+        padding: 1rem;
+        margin: 1rem;
+    }
+
+    .profile-column.new input {
+        width: 6rem;
+    }
+
+    .cart {
+        padding: 0;
+        display: revert;
+    }
+
+    .cart-checkout {
+        margin: 1rem;
+    }
+
+    .cart-remove-button {
+        top: -13.8rem;
+        right: -1.4rem;
+    }
+
+    .cart-album-image-container {
+        text-align: center;
+    }
+
+    .cart-empty {
+        width: revert;
     }
 }

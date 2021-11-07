@@ -73,7 +73,7 @@ class Cart extends Base {
                     <div className="cart-list">
                         {cart.albums.map(album => 
                             <div className="cart-albums-container" key={album.id}>
-                                <div><img className="cart-albums-image" src={album.image} /></div>
+                                <div className='cart-album-image-container'><img className="cart-albums-image" src={album.image} /></div>
                                 <div className="cart-albums-details">
                                     <div>Title: {album.title}</div>
                                     <div>Artist: {album.artist}</div>
