@@ -90,6 +90,7 @@ body {
     margin: 0.32rem;
     width: 13rem;
     height: 15rem;
+    font-size: 0.8rem;
 }
 
 .albums-image {
@@ -98,7 +99,7 @@ body {
 }
 
 .albums-artist, .albums-price {
-    font-size: 0.88rem;
+    font-size: 0.6rem;
     padding: 0.2rem 0;
 }
 
@@ -413,7 +414,7 @@ body {
     }
 
     .navigation {
-        flex-direction: column;
+        font-size: 0.66rem;
         height: unset;
     }
 
