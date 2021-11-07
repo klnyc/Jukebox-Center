@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import Base from './Base'
-import { updateProfile, getOrderHistory } from '../store'
+import React, { Fragment } from "react"
+import { connect } from "react-redux"
+import { Link } from "react-router-dom"
+import Base from "./Base"
+import { updateProfile, getOrderHistory } from "../store"
 
 class Profile extends Base {
     constructor() {
@@ -10,9 +10,9 @@ class Profile extends Base {
         this.state = {
             edit: false,
             fields: [],
-            name: '',
-            address: '',
-            password: ''
+            name: "",
+            address: "",
+            password: ""
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.renderProfile = this.renderProfile.bind(this)
@@ -27,7 +27,7 @@ class Profile extends Base {
             { category: "Address", data: user.address }
         ]
         getOrderHistory()
-        this.props.match.path === '/profile/edit'
+        this.props.match.path === "/profile/edit"
         ? this.setState({ edit: true, fields }) 
         : this.setState({ edit: false, fields })
     }
@@ -44,7 +44,7 @@ class Profile extends Base {
                 {fields.map((field, index) => 
                     <div className="profile-fields" key={index}>
                         <div className="profile-column left">{field.category}</div>
-                        <div className="profile-column right">{field.data || '-'}</div>
+                        <div className="profile-column right">{field.data || "-"}</div>
                     </div> 
                 )}
                 <div className="profile-submit-button"><Link to="/profile/edit">Edit Account Information</Link></div>
@@ -63,7 +63,7 @@ class Profile extends Base {
                 {fields.slice(1).map((field, index) => 
                     <div className="profile-fields" key={index}>
                         <div className="profile-column type">{field.category}</div>
-                        <div className="profile-column current">{field.data || '-'}</div>
+                        <div className="profile-column current">{field.data || "-"}</div>
                         <div className="profile-column new">
                             <input name={field.category.toLowerCase()} value={this.state[field.category.toLowerCase()]} onChange={this.handleChange} />
                         </div>

@@ -1,9 +1,9 @@
-const router = require('express').Router()
-const Albums = require('../database/albums')
-const Orders = require('../database/orders')
-const Cart = require('../database/cart')
+const router = require("express").Router()
+const Albums = require("../database/albums")
+const Orders = require("../database/orders")
+const Cart = require("../database/cart")
 
-router.get('/', async (request, response, next) => {
+router.get("/", async (request, response, next) => {
     try {
         await Orders.findOrCreate({
             where: {
@@ -25,7 +25,7 @@ router.get('/', async (request, response, next) => {
     }
 })
 
-router.post('/add', async (request, response, next) => {
+router.post("/add", async (request, response, next) => {
     try {
         await Orders.findOrCreate({
             where: {
@@ -51,7 +51,7 @@ router.post('/add', async (request, response, next) => {
     }
 })
 
-router.delete('/', async (request, response, next) => {
+router.delete("/", async (request, response, next) => {
     try {
         const album = await Cart.findOne({
             where: {
@@ -66,7 +66,7 @@ router.delete('/', async (request, response, next) => {
     }
 })
 
-router.put('/purchase', async (request, response, next) => {
+router.put("/purchase", async (request, response, next) => {
     try {
         const order = await Orders.findByPk(request.body.orderId)
         await order.update({ 
@@ -88,7 +88,7 @@ router.put('/purchase', async (request, response, next) => {
     }
 })
 
-router.post('/purchase', async (request, response, next) => {
+router.post("/purchase", async (request, response, next) => {
     try {
         const order = await Orders.create({
             address: request.body.guestCart.address,

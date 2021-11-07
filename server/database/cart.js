@@ -1,7 +1,7 @@
-const Sequelize = require('sequelize')
-const database = require('./sequelize')
+const Sequelize = require("sequelize")
+const database = require("./sequelize")
 
-const Cart = database.define('cart', {
+const Cart = database.define("cart", {
     quantity: {
         type: Sequelize.INTEGER,
         allowNull: false

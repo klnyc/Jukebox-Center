@@ -1,7 +1,7 @@
-import { createStore, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
-import { createLogger } from 'redux-logger'
-import Axios from 'axios'
+import { createStore, applyMiddleware } from "redux"
+import thunk from "redux-thunk"
+import { createLogger } from "redux-logger"
+import Axios from "axios"
 
 const initialState = {
     user: {},
@@ -10,17 +10,17 @@ const initialState = {
     currentGenre: "",
     cart: {},
     orderHistory: [],
-    error: ''
+    error: ""
 }
 
-const SET_USER = 'SET_USER'
-const REMOVE_USER = 'REMOVE_USER'
-const SET_ALBUMS = 'SET_ALBUMS'
-const SET_ALBUM = 'SET_ALBUM'
-const SET_CURRENT_GENRE = 'SET_CURRENT_GENRE'
-const SET_CART = 'SET_CART'
-const SET_ORDER_HISTORY = 'SET_ORDER_HISTORY'
-const SET_ERROR = 'SET_ERROR'
+const SET_USER = "SET_USER"
+const REMOVE_USER = "REMOVE_USER"
+const SET_ALBUMS = "SET_ALBUMS"
+const SET_ALBUM = "SET_ALBUM"
+const SET_CURRENT_GENRE = "SET_CURRENT_GENRE"
+const SET_CART = "SET_CART"
+const SET_ORDER_HISTORY = "SET_ORDER_HISTORY"
+const SET_ERROR = "SET_ERROR"
 
 const setUser = (user) => ({ type: SET_USER, user })
 const removeUser = () => ({ type: REMOVE_USER })
@@ -34,10 +34,10 @@ export const setError = (error) => ({ type: SET_ERROR, error })
 export const getAlbums = (genre) => {
     return async (dispatch) => {
         try {
-            const { data } = genre ? await Axios.get(`/api/albums/${genre}`) : await Axios.get('/api/albums')
+            const { data } = genre ? await Axios.get(`/api/albums/${genre}`) : await Axios.get("/api/albums")
             dispatch(setAlbums(data))
         } catch (error) {
-            console.error('Error with albums!')
+            console.error("Error with albums!")
         }
     }
 }
@@ -48,7 +48,7 @@ export const getAlbum = (genre, albumId) => {
             const { data } = await Axios.get(`/api/albums/${genre}/${albumId}`)
             dispatch(setAlbum(data))
         } catch (error) {
-            console.error('Error with album!')
+            console.error("Error with album!")
         }
     }
 }
@@ -60,9 +60,9 @@ export const authenticate = (state, history) => {
             const { data } = await Axios.post(`/api/user/${method}`, { email, password })
             dispatch(setUser(data))
             window.localStorage.clear()
-            history.push('/')
+            history.push("/")
         } catch (error) {
-            error ? dispatch(setError('Username or password is invalid')) : null
+            error ? dispatch(setError("Username or password is invalid")) : null
             console.error(error)
         }
     }
@@ -71,7 +71,7 @@ export const authenticate = (state, history) => {
 export const logout = () => {
     return async (dispatch) => {
         try {
-            await Axios.delete('/api/user/logout')
+            await Axios.delete("/api/user/logout")
             dispatch(removeUser())
         } catch (error) {
             console.error(error)
@@ -82,7 +82,7 @@ export const logout = () => {
 export const loadUser = () => {
     return async (dispatch) => {
         try {
-            const { data } = await Axios.get('/api/user')
+            const { data } = await Axios.get("/api/user")
             dispatch(setUser(data || {}))
         } catch (error) {
             console.error(error)
@@ -94,9 +94,9 @@ export const updateProfile = (state, history) => {
     const { name, address } = state
     return async (dispatch) => {
         try {
-            const { data } = await Axios.put('/api/user/profile', { name, address })
+            const { data } = await Axios.put("/api/user/profile", { name, address })
             dispatch(setUser(data))
-            history.push('/profile')
+            history.push("/profile")
         } catch (error) {
             console.error(error)
         }
@@ -106,7 +106,7 @@ export const updateProfile = (state, history) => {
 export const getCart = () => {
     return async (dispatch) => {
         try {
-            const { data } = await Axios.get('/api/cart')
+            const { data } = await Axios.get("/api/cart")
             dispatch(setCart(data))
         } catch (error) {
             console.error(error)
@@ -117,9 +117,9 @@ export const getCart = () => {
 export const addToCart = (albumId, quantity) => {
     return async (dispatch) => {
         try {
-            const { data } = await Axios.get('/api/cart')
+            const { data } = await Axios.get("/api/cart")
             const exist = data.albums.some(album => album.id === albumId)
-            exist ? dispatch(setError('Already added to cart')) : await Axios.post('/api/cart/add', { albumId, quantity })
+            exist ? dispatch(setError("Already added to cart")) : await Axios.post("/api/cart/add", { albumId, quantity })
         } catch (error) {
             console.error(error)
         }
@@ -129,8 +129,8 @@ export const addToCart = (albumId, quantity) => {
 export const removeFromCart = (orderId, albumId) => {
     return async (dispatch) => {
         try {
-            await Axios.delete('/api/cart', { data: { orderId, albumId } })
-            const { data } = await Axios.get('/api/cart')
+            await Axios.delete("/api/cart", { data: { orderId, albumId } })
+            const { data } = await Axios.get("/api/cart")
             dispatch(setCart(data))
         } catch (error) {
             console.error(error)
@@ -141,8 +141,8 @@ export const removeFromCart = (orderId, albumId) => {
 export const purchaseCart = (orderId, address, history) => {
     return async () => {
         try {
-            await Axios.put('/api/cart/purchase', { orderId, address })
-            history.push('/confirmation')
+            await Axios.put("/api/cart/purchase", { orderId, address })
+            history.push("/confirmation")
         } catch (error) {
             console.error(error)
         }
@@ -150,7 +150,7 @@ export const purchaseCart = (orderId, address, history) => {
 }
 
 export const getGuestCart = () => {
-    window.localStorage.cart = window.localStorage.cart || JSON.stringify({ id: true , address: '', albums: [] })
+    window.localStorage.cart = window.localStorage.cart || JSON.stringify({ id: true , address: "", albums: [] })
     const guestCart = JSON.parse(window.localStorage.cart)
     return (dispatch) => {
         dispatch(setCart(guestCart))
@@ -158,14 +158,14 @@ export const getGuestCart = () => {
 }
 
 export const addToGuestCart = (id, quantity, genre) => {
-    window.localStorage.cart = window.localStorage.cart || JSON.stringify({ id: true , address: '', albums: [] })
+    window.localStorage.cart = window.localStorage.cart || JSON.stringify({ id: true , address: "", albums: [] })
     const guestCart = JSON.parse(window.localStorage.cart)
     return async (dispatch) => {
         try {
             const { data } = await Axios.get(`/api/albums/${genre}/${id}`)
             const exist = guestCart.albums.some(album => album.id === id)
             const album = { ...data, cart: { quantity } }
-            exist ? dispatch(setError('Already added to cart')) : guestCart.albums.push(album) 
+            exist ? dispatch(setError("Already added to cart")) : guestCart.albums.push(album) 
             window.localStorage.setItem("cart", JSON.stringify(guestCart))
         } catch (error) {
             console.error(error)
@@ -187,9 +187,9 @@ export const purchaseGuestCart = (address, history) => {
         try {
             let guestCart = JSON.parse(window.localStorage.cart)
             guestCart = { ...guestCart, address }
-            await Axios.post('/api/cart/purchase', { guestCart })
+            await Axios.post("/api/cart/purchase", { guestCart })
             window.localStorage.clear()
-            history.push('/confirmation')
+            history.push("/confirmation")
         } catch (error) {
             console.error(error)
         }
@@ -199,7 +199,7 @@ export const purchaseGuestCart = (address, history) => {
 export const getOrderHistory = () => {
     return async (dispatch) => {
         try {
-            const { data } = await Axios.get('/api/user/orderhistory')
+            const { data } = await Axios.get("/api/user/orderhistory")
             dispatch(setOrderHistory(data))
         } catch (error) {
             console.error(error)

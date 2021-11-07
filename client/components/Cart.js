@@ -1,18 +1,18 @@
-import React, { Fragment } from 'react'
-import { connect } from 'react-redux'
-import Base from './Base'
-import store, { getCart, removeFromCart, purchaseCart, getGuestCart, removeFromGuestCart, purchaseGuestCart, setError } from '../store'
+import React, { Fragment } from "react"
+import { connect } from "react-redux"
+import Base from "./Base"
+import store, { getCart, removeFromCart, purchaseCart, getGuestCart, removeFromGuestCart, purchaseGuestCart, setError } from "../store"
 import { IoIosClose } from "react-icons/io"
 
 class Cart extends Base {
     constructor() {
         super()
         this.state = {
-            CC: '',
-            MM: '',
-            YY: '',
-            CVC: '',
-            address: ''
+            CC: "",
+            MM: "",
+            YY: "",
+            CVC: "",
+            address: ""
         }
         this.removeAlbum = this.removeAlbum.bind(this)
         this.validateCreditCard = this.validateCreditCard.bind(this)
@@ -23,7 +23,7 @@ class Cart extends Base {
     componentDidMount() {
         const { getCart, getGuestCart, user } = this.props
         const self = this
-        store.dispatch(setError(''))
+        store.dispatch(setError(""))
         user.id ? getCart() : getGuestCart()
         setTimeout(() => {
             const { user } = self.props
@@ -51,7 +51,7 @@ class Cart extends Base {
         const { user, purchaseCart, purchaseGuestCart, history } = this.props
         this.validateCreditCard()
         ? (user.id ? purchaseCart(orderId, address, history) : purchaseGuestCart(address, history))
-        : store.dispatch(setError('Invalid credit card and address'))
+        : store.dispatch(setError("Invalid credit card and address"))
     }
 
     calculateTotalPrice() {
@@ -73,7 +73,7 @@ class Cart extends Base {
                     <div className="cart-list">
                         {cart.albums.map(album => 
                             <div className="cart-albums-container" key={album.id}>
-                                <div className='cart-album-image-container'><img className="cart-albums-image" src={album.image} /></div>
+                                <div className="cart-album-image-container"><img className="cart-albums-image" src={album.image} /></div>
                                 <div className="cart-albums-details">
                                     <div>Title: {album.title}</div>
                                     <div>Artist: {album.artist}</div>

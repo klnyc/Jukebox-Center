@@ -1,9 +1,9 @@
-const router = require('express').Router()
-const Users = require('../database/users')
-const Orders = require('../database/orders')
-const Albums = require('../database/albums')
+const router = require("express").Router()
+const Users = require("../database/users")
+const Orders = require("../database/orders")
+const Albums = require("../database/albums")
 
-router.get('/', (request, response, next) => {
+router.get("/", (request, response, next) => {
     try {
         response.json(request.user)
     } catch (error) {
@@ -11,13 +11,13 @@ router.get('/', (request, response, next) => {
     }
 })
 
-router.post('/login', async (request, response, next) => {
+router.post("/login", async (request, response, next) => {
     try {
         const user = await Users.findOne({ where: { email: request.body.email } })
         if (!user) {
-            response.status(401).send('Invalid email or password')
+            response.status(401).send("Invalid email or password")
         } else if (!user.correctPassword(request.body.password)) {
-            response.status(401).send('Incorrect password')
+            response.status(401).send("Incorrect password")
         } else {
             request.login(user, (error) => error ? next(error) : response.json(user))
         }
@@ -26,26 +26,26 @@ router.post('/login', async (request, response, next) => {
     }
 })
 
-router.post('/signup', async (request, response, next) => {
+router.post("/signup", async (request, response, next) => {
     try {
         const user = await Users.create(request.body)
         request.login(user, (error) => error ? next(error) : response.json(user))
     } catch (error) {
-        if (error.name === 'SequelizeUniqueConstraintError') {
-            response.status(401).send('User already exists')
+        if (error.name === "SequelizeUniqueConstraintError") {
+            response.status(401).send("User already exists")
         } else {
             next(error)
         }
     }
 })
 
-router.delete('/logout', (request, response) => {
+router.delete("/logout", (request, response) => {
     request.logout()
     request.session.destroy()
     response.sendStatus(204)
 })
 
-router.put('/profile', async (request, response) => {
+router.put("/profile", async (request, response) => {
     try {
         const { name, address } = request.body
         const user = await Users.findByPk(request.user.id)
@@ -67,7 +67,7 @@ router.put('/profile', async (request, response) => {
 })
 
 
-router.get('/orderhistory', async (request, response, next) => {
+router.get("/orderhistory", async (request, response, next) => {
     try {
         const orderHistory = await Orders.findAll({
             where: {

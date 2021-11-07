@@ -1,10 +1,10 @@
-const router = require('express').Router()
-const Albums = require('../database/albums')
+const router = require("express").Router()
+const Albums = require("../database/albums")
 
-router.get('/', async (request, response, next) => {
+router.get("/", async (request, response, next) => {
     try {
         const albums = await Albums.findAll({
-            order: [['year', 'DESC']]
+            order: [["year", "DESC"]]
         })
         response.json(albums)
     } catch (error) {
@@ -12,10 +12,10 @@ router.get('/', async (request, response, next) => {
     }
 })
 
-router.get('/:genre', async (request, response, next) => {
+router.get("/:genre", async (request, response, next) => {
     try {
         const albums = await Albums.findAll({
-            order: [['year', 'DESC']],
+            order: [["year", "DESC"]],
             where: { genre: request.params.genre }
         })
         response.json(albums)
@@ -24,7 +24,7 @@ router.get('/:genre', async (request, response, next) => {
     }
 })
 
-router.get('/:genre/:id', async (request, response, next) => {
+router.get("/:genre/:id", async (request, response, next) => {
     try {
         const album = await Albums.findByPk(request.params.id)
         response.json(album)

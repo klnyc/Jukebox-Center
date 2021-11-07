@@ -1,16 +1,16 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
-import store, { getAlbums, setCurrentGenre } from '../store'
+import React from "react"
+import { Link } from "react-router-dom"
+import { connect } from "react-redux"
+import store, { getAlbums, setCurrentGenre } from "../store"
 
 class Navigation extends React.Component {
     render() {
         const { getAlbums, currentGenre } = this.props
-        const genres = ['Chinese','Country','Korean','Pop','R&B','Rap','Rock']
+        const genres = ["Chinese","Country","Korean","Pop","R&B","Rap","Rock"]
         return (
-            <div className='navigation'>
+            <div className="navigation">
                 <Link 
-                    to={'/albums'} 
+                    to={"/albums"} 
                     className={currentGenre === "All" ? "navigation-genre selected-genre" : "navigation-genre"} 
                     onClick={() => { getAlbums(); store.dispatch(setCurrentGenre("All")) }}>
                     All

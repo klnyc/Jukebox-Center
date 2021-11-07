@@ -4,8 +4,8 @@ if (process.env.DATABASE_URL) {
     configuraton = {
     logging: false,
     operatorsAliases: false,
-    dialect: 'postgres',
-    protocol: 'postgres',
+    dialect: "postgres",
+    protocol: "postgres",
     ssl: true,
     dialectOptions: {
       ssl: {
@@ -20,7 +20,7 @@ if (process.env.DATABASE_URL) {
     }
 }
 
-const Sequelize = require('sequelize')
-const database = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost:5432/jukeboxcenter', configuraton)
+const Sequelize = require("sequelize")
+const database = new Sequelize(process.env.DATABASE_URL || "postgres://localhost:5432/jukeboxcenter", configuraton)
 
 module.exports = database

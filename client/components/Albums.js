@@ -1,8 +1,8 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { getAlbums } from '../store'
-import Base from './Base'
+import React from "react"
+import { connect } from "react-redux"
+import { Link } from "react-router-dom"
+import { getAlbums } from "../store"
+import Base from "./Base"
 
 class Albums extends Base {
     componentDidMount() {

@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react'
-import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
-import store, { setCurrentGenre, logout } from '../store'
+import React, { Fragment } from "react"
+import { Link } from "react-router-dom"
+import { connect } from "react-redux"
+import store, { setCurrentGenre, logout } from "../store"
 import { GiMusicalNotes } from "react-icons/gi"
 
 class Header extends React.Component {

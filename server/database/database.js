@@ -1,8 +1,8 @@
-const database = require('./sequelize')
-const Users = require('./users')
-const Albums = require('./albums')
-const Orders = require('./orders')
-const Cart = require('./cart')
+const database = require("./sequelize")
+const Users = require("./users")
+const Albums = require("./albums")
+const Orders = require("./orders")
+const Cart = require("./cart")
 
 Users.hasMany(Orders)
 Orders.belongsTo(Users)

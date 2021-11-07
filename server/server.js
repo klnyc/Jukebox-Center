@@ -1,11 +1,11 @@
-const express = require('express')
-const morgan = require('morgan')
-const bodyParser = require('body-parser')
-const path = require('path')
-const passport = require('passport')
-const session = require('express-session')
-const SequelizeStore = require('connect-session-sequelize')(session.Store)
-const database = require('./database/database')
+const express = require("express")
+const morgan = require("morgan")
+const bodyParser = require("body-parser")
+const path = require("path")
+const passport = require("passport")
+const session = require("express-session")
+const SequelizeStore = require("connect-session-sequelize")(session.Store)
+const database = require("./database/database")
 
 const app = express()
 const sessionStore = new SequelizeStore({ db: database })
@@ -26,12 +26,12 @@ passport.serializeUser((user, done) => {
     }
   })
 
-app.use(morgan('dev'))
-app.use(express.static(path.join(__dirname, '../public')))
+app.use(morgan("dev"))
+app.use(express.static(path.join(__dirname, "../public")))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(session({
-    secret: process.env.SESSION_SECRET || 'session secret',
+    secret: process.env.SESSION_SECRET || "session secret",
     resave: false,
     saveUninitialized: false,
     store: sessionStore
@@ -39,15 +39,15 @@ app.use(session({
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use('/api', require('./routes/routes'))
+app.use("/api", require("./routes/routes"))
 
-app.get('*', (request, response) => {
-    response.sendFile(path.join(__dirname, '../public/index.html'))
+app.get("*", (request, response) => {
+    response.sendFile(path.join(__dirname, "../public/index.html"))
 })
 
 app.use((error, request, response, next) => {
     console.error(error.stack)
-    response.status(error.status || 500).send(error.message || 'Internal server error')
+    response.status(error.status || 500).send(error.message || "Internal server error")
 })
 
-database.sync().then(() => app.listen(process.env.PORT || 3000, () => console.log('Server is listening on Port 3000')))
+database.sync().then(() => app.listen(process.env.PORT || 3000, () => console.log("Server is listening on Port 3000")))

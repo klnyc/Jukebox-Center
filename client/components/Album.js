@@ -1,7 +1,7 @@
-import React, { Fragment } from 'react'
-import { connect } from 'react-redux'
-import store, { getAlbum, addToCart, addToGuestCart, setError } from '../store'
-import Base from './Base'
+import React, { Fragment } from "react"
+import { connect } from "react-redux"
+import store, { getAlbum, addToCart, addToGuestCart, setError } from "../store"
+import Base from "./Base"
 import { ImDiamonds } from "react-icons/im";
 
 class Album extends Base {
@@ -15,7 +15,7 @@ class Album extends Base {
         const { genre, id } = this.props.match.params
         const { getAlbum } = this.props
         getAlbum(genre, id)
-        store.dispatch(setError(''))
+        store.dispatch(setError(""))
     }
 
     buyAlbum(albumId, quantity, inventory, genre) {
@@ -24,9 +24,9 @@ class Album extends Base {
         const purchase = () => {
             addedToCart ? null : (user.id ? addToCart(albumId, quantity) : addToGuestCart(albumId, quantity, genre))
             this.setState({ addedToCart: true })
-            store.dispatch(setError(''))
+            store.dispatch(setError(""))
         }
-        quantity > inventory || quantity < 1 ? store.dispatch(setError('Not enough in stock')) : purchase()
+        quantity > inventory || quantity < 1 ? store.dispatch(setError("Not enough in stock")) : purchase()
     }
 
     render() {

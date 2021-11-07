@@ -1,15 +1,15 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import Base from './Base'
-import store, { authenticate, setError } from '../store'
+import React from "react"
+import { connect } from "react-redux"
+import Base from "./Base"
+import store, { authenticate, setError } from "../store"
 
 class Authenticate extends Base {
     constructor() {
         super()
         this.state = {
-            method: 'login',
-            email: '',
-            password: ''
+            method: "login",
+            email: "",
+            password: ""
         }
         this.handleSubmit = this.handleSubmit.bind(this)
     }
@@ -17,7 +17,7 @@ class Authenticate extends Base {
     componentDidMount() {
         const method = this.props.match.path.slice(1)
         this.setState({ method })
-        store.dispatch(setError(''))
+        store.dispatch(setError(""))
     }
 
     handleSubmit(event) {
@@ -35,7 +35,7 @@ class Authenticate extends Base {
                     <div><input className="login-input" name="email" type="email" placeholder="Email" value={email} onChange={this.handleChange} required></input></div>
                     <div><input className="login-input" name="password" type="password" placeholder="Password" value={password} onChange={this.handleChange} required></input></div>
                 </div>
-                <div className="login-submit-button" onClick={this.handleSubmit}>{method === 'login' ? 'Login' : 'Sign Up'}</div>
+                <div className="login-submit-button" onClick={this.handleSubmit}>{method === "login" ? "Login" : "Sign Up"}</div>
                 {error && <div className="error">{error}</div>}
             </div>
         )

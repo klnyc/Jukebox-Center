@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 import { GiMusicalNotes } from "react-icons/gi"
 
 const Footer = () => {

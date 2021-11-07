@@ -1,8 +1,8 @@
-import React, { Fragment } from 'react'
-import { connect } from 'react-redux'
-import { Route, BrowserRouter } from 'react-router-dom'
-import { Header, Navigation, Footer, Albums, Album, Authenticate, Profile, Cart, Confirmation } from './Index'
-import { loadUser } from '../store'
+import React, { Fragment } from "react"
+import { connect } from "react-redux"
+import { Route, BrowserRouter } from "react-router-dom"
+import { Header, Navigation, Footer, Albums, Album, Authenticate, Profile, Cart, Confirmation } from "./Index"
+import { loadUser } from "../store"
 
 class Main extends React.Component {
     componentDidMount() {

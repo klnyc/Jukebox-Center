@@ -1,11 +1,11 @@
-const database = require('./database')
-const Album = require('./albums')
+const database = require("./database")
+const Album = require("./albums")
 
 const seed = async () => {
     try {
         await database.sync({ force: true })
         await Promise.all(albums.map(album => Album.create(album)))
-        console.log('Seeded!')
+        console.log("Seeded!")
         database.close()
     } catch (error) {
         console.error(error)
@@ -140,7 +140,7 @@ const albums = [
       "artist" : "Blake Shelton",
       "id" : 11,
       "price" : 2000,
-      "title" : "Fully Loaded: God's Country",
+      "title" : "Fully Loaded: God"s Country",
       "image" : "https:\/\/resources.tidal.com\/images\/82dd8da6\/04f1\/4805\/9b9c\/93bb7a23e9a0\/750x750.jpg",
       "year" : "2019",
       "createdAt" : "2020-04-14 16:56:13.127-04",

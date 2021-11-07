@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react"
 
 class Base extends React.Component {
     constructor() {
@@ -10,11 +10,11 @@ class Base extends React.Component {
     handleChange(event) {
         const inputName = event.target.name
         const inputLength = event.target.value.length
-        if (inputName === 'quantity' || inputName === 'MM' || inputName === 'YY') {
+        if (inputName === "quantity" || inputName === "MM" || inputName === "YY") {
             if (inputLength <= 2) this.setState({ [event.target.name]: event.target.value })
-        } else if (inputName === 'CVC') {
+        } else if (inputName === "CVC") {
             if (inputLength <= 3) this.setState({ [event.target.name]: event.target.value })
-        } else if (inputName === 'CC') {
+        } else if (inputName === "CC") {
             if (inputLength <= 16) this.setState({ [event.target.name]: event.target.value })
         } else {
             this.setState({ [event.target.name]: event.target.value })
