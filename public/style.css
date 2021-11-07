@@ -373,7 +373,7 @@ body {
     justify-content: center;
     background-color: black;
     color: white;
-    height: 6rem;
+    height: 3rem;
     align-items: center;
     width: 100%;
     position: absolute;
@@ -400,8 +400,53 @@ body {
     border: 0.08rem solid #0000001a;
 }
 
-@media only screen and (max-width: 992px) {
+@media only screen and (max-width: 1023px) {
     .albums {
         width: 30rem;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .albums {
+        width: unset;
+        justify-content: center;
+    }
+
+    .navigation {
+        flex-direction: column;
+        height: unset;
+    }
+
+    .navigation-genre {
+        margin: 0.6rem;
+    }
+
+    .header {
+        flex-direction: column;
+        height: unset;
+    }
+
+    .header-link {
+        margin: 0.6rem;
+        font-size: 1.2rem;
+    }
+
+    .album {
+        display: unset;
+    }
+    
+    .album-image {
+        width: 100%;
+        margin: 0;
+    }
+
+    .album-info {
+        width: unset;
+        margin: 1rem;
+        padding: 1rem 0;
+    }
+
+    .footer {
+        position: relative;
     }
 }
