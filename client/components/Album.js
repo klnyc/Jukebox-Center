@@ -1,4 +1,4 @@
-import React, { Fragment } from "react"
+import React from "react"
 import { connect } from "react-redux"
 import store, { getAlbum, addToCart, addToGuestCart, setError } from "../store"
 import Base from "./Base"
@@ -40,11 +40,11 @@ class Album extends Base {
                     <div className="album-artist">{album.artist}</div>
                     <div className="album-details">{album.genre}<ImDiamonds className="album-details-diamond" />{album.year}<ImDiamonds className="album-details-diamond" />{album.price && this.formatPrice(album.price)}</div>
                     {album.inventory ?
-                    <Fragment>
+                    <>
                         <div className="stock-in">Stock: {album.inventory}</div>
                         <div>Quantity: <input className="album-quantity-input" type="number" name="quantity" value={quantity} min="1" onChange={this.handleChange} /></div>
                         <div className={"album-add-button" + (addedToCart ? " added" : "")} onClick={() => this.buyAlbum(album.id, quantity, album.inventory, album.genre)}>Add To Cart</div>
-                    </Fragment> : <div className="stock-out">"Out of stock!"</div>}
+                    </> : <div className="stock-out">"Out of stock!"</div>}
                     {error && <div className="error">{error}</div>}
                 </div>
             </div>

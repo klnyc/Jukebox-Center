@@ -1,4 +1,4 @@
-import React, { Fragment } from "react"
+import React from "react"
 import { connect } from "react-redux"
 import Base from "./Base"
 import store, { getCart, removeFromCart, purchaseCart, getGuestCart, removeFromGuestCart, purchaseGuestCart, setError } from "../store"
@@ -69,7 +69,7 @@ class Cart extends Base {
         return (
             <div className="cart">
                 {cart.id && (cart.albums.length ? 
-                <Fragment>
+                <>
                     <div className="cart-list">
                         {cart.albums.map(album => 
                             <div className="cart-albums-container" key={album.id}>
@@ -103,7 +103,7 @@ class Cart extends Base {
                         <div className="cart-purchase-button" onClick={() => this.purchase(cart.id, address)}>Purchase</div>
                         {error && <div className="error">{error}</div>}
                     </div>
-                </Fragment> : <div className="cart-empty">CART IS EMPTY</div>)}
+                </> : <div className="cart-empty">CART IS EMPTY</div>)}
             </div>
         )
     }

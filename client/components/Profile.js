@@ -1,4 +1,4 @@
-import React, { Fragment } from "react"
+import React from "react"
 import { connect } from "react-redux"
 import { Link } from "react-router-dom"
 import Base from "./Base"
@@ -40,7 +40,7 @@ class Profile extends Base {
 
     renderProfile(fields) {
         return (
-            <Fragment>
+            <>
                 {fields.map((field, index) => 
                     <div className="profile-fields" key={index}>
                         <div className="profile-column left">{field.category}</div>
@@ -48,13 +48,13 @@ class Profile extends Base {
                     </div> 
                 )}
                 <div className="profile-submit-button"><Link to="/profile/edit">Edit Account Information</Link></div>
-            </Fragment>
+            </>
         )
     }
 
     renderProfileEdit(fields) {
         return (
-            <Fragment>
+            <>
                 <div className="profile-fields">
                     <div className="profile-column type"></div>
                     <div className="profile-column current">Current</div>
@@ -70,7 +70,7 @@ class Profile extends Base {
                     </div> 
                 )}
                 <div className="profile-submit-button" onClick={this.handleSubmit}>Submit Changes</div>
-            </Fragment>
+            </>
         )
     }
 
