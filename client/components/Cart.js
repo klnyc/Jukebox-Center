@@ -171,7 +171,7 @@ class Cart extends Base {
               </div>
             </>
           ) : (
-            <div className="cart-empty">CART IS EMPTY</div>
+            <div className="cart-empty">Cart is empty</div>
           ))}
       </div>
     );
