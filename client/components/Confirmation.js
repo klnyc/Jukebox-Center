@@ -1,11 +1,7 @@
-import React from "react"
+import React from "react";
 
 const Confirmation = () => {
-    return (
-        <div className="confirmation">
-            Your order has been processed!
-        </div>
-    )
-}
+  return <div className="confirmation">Your order has been processed!</div>;
+};
 
-export default Confirmation
+export default Confirmation;
