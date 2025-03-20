@@ -25,3 +25,5 @@ Other
 
 ## :rocket: Deployment
 https://jukeboxcenter.herokuapp.com/
+
+This web application is no longer available publicly due to Heroku's shut down of free tier hosting in 2022.
