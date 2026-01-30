@@ -7,7 +7,9 @@ const session = require("express-session");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const database = require("./database/database");
 
+// creates server
 const app = express();
+
 const sessionStore = new SequelizeStore({ db: database });
 passport.serializeUser((user, done) => {
   try {
@@ -26,8 +28,9 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
+// .use is middleware
 app.use(morgan("dev"));
-app.use(express.static(path.join(__dirname, "../public")));
+app.use(express.static(path.join(__dirname, "../public"))); // retrieves all CSS and JS files from public folder
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(

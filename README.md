@@ -10,18 +10,13 @@ and view their order history.
 Front End
 * React
 * Redux
-* Express
 * CSS
 * HTML
 
 Back End
+* Express
 * PostgreSQL
 * Sequelize
-
-Other
-* Heroku
-* Node.js
-* Git
 
 ## :rocket: Deployment
 https://jukeboxcenter.herokuapp.com/
