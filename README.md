@@ -11,7 +11,6 @@ Front End
 * React
 * Redux
 * CSS
-* HTML
 
 Back End
 * Express
@@ -21,4 +20,7 @@ Back End
 ## :rocket: Deployment
 https://jukeboxcenter.herokuapp.com/
 
-This web application is no longer available publicly due to Heroku's shut down of free tier hosting in 2022.
+This web application is no longer available publicly due to Heroku's shut down of free tier hosting in 2022. Will need to replace the hosting service and Postgres database server.
+
+Migrating to Render may be considered if this project ever gets revived.
+https://render.com/docs/web-services
